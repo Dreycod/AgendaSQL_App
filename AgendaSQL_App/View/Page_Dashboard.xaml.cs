@@ -13,29 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AgendaSQL_App
+namespace AgendaSQL_App.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour Page_Dashboard.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Page_Dashboard : UserControl
     {
-        public MainWindow()
+        public Page_Dashboard()
         {
             InitializeComponent();
-        }
-        private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Page_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
