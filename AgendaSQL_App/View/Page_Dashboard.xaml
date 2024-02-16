@@ -49,6 +49,7 @@
             
             <!-- ************************************ Filter Grid ************************************************ -->
             <Grid Grid.Row="2" >
+                
                 <TextBlock Name="NContacts_TB" Text="10 Total Contacts"/>
                 <!-- Add filter by-->
             </Grid>
@@ -76,7 +77,11 @@
                     <TextBlock Text="0947819241" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>-->
 
-                <ListView Name="LV_Contacts" Background="Transparent">
+                <DataGrid Name="DG_Contacts">
+                    
+                </DataGrid>
+                
+                <ListView Name="LV_Contacts" Background="Transparent" SelectionChanged="LV_Contacts_SelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="60">
