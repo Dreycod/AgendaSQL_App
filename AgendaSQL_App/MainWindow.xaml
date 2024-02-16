@@ -31,12 +31,17 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="4*"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <TextBlock Text="AgendaSQL App" FontSize="20" FontWeight="Bold" Margin="10"/>
 
-                            <Border Grid.Column="1" Margin="20,8,20,8" Background="{StaticResource Secondary_Background}" Width="440" HorizontalAlignment="Left" CornerRadius="20">  </Border>
-                            
-                            
+                            <Border Grid.Column="1" Margin="163,10,0,6" Background="{StaticResource Secondary_Background}" Width="440" CornerRadius="20" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="Ressources/Images/Time.png" Width="30" Height="30" Margin="10"/>
+                                    <TextBox Text="Search" FontSize="20" Margin="10" Width="360"/>
+                                </StackPanel>
+                            </Border>
+
+
                             <Button Grid.Column="1" Name="Close_Btn" Content="X" Margin="10" Width="30" Click="CloseButton_Click" HorizontalAlignment="Right">
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -60,10 +65,10 @@
                             </Button>
                         </Grid>
                     </Border>
-                    
-                    
-                    
-                    
+
+
+
+
                     <ContentPresenter Grid.Row="1"/>
                 </Grid>
             </Border>
@@ -99,14 +104,14 @@
 
             <TextBlock Style="{StaticResource Regular_TB}" Text="MAIN MENU" Name="CurrentPage_TB" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <Button Name="Dashboard_Btn" Grid.Row="1" Style="{StaticResource Btn_Menu}" Click="Page_Click">
+            <Button Name="Dashboard_Btn" Grid.Row="1" Style="{StaticResource Btn_Menu}" Click="DashboardBTN_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Ressources/Images/Time.png" Width="30" Height="30" Margin="10"/>
                     <TextBlock Text="Dashboard" FontSize="20" FontWeight="Bold" Margin="10"/>
                 </StackPanel>
             </Button>
 
-            <Button Name="Contacts_Btn" Grid.Row="1" Style="{StaticResource Btn_Menu}" Click="Page_Click" HorizontalAlignment="Left" Margin="0,53,0,0" Grid.RowSpan="2" Width="186">
+            <Button Name="Contacts_Btn" Grid.Row="1" Style="{StaticResource Btn_Menu}" Click="ContactsBTN_Click" HorizontalAlignment="Left" Margin="0,53,0,0" Grid.RowSpan="2" Width="186">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Ressources/Images/Time.png" Width="30" Height="30" Margin="10"/>
                     <TextBlock Text="Contacts" FontSize="20" FontWeight="Bold" Margin="10"/>

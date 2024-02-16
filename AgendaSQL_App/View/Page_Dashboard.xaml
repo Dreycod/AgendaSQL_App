@@ -8,151 +8,105 @@
              Background="Transparent"
              d:DesignHeight="539" d:DesignWidth="737">
     <!-- test-->
-    <Border BorderThickness="10" CornerRadius="35" Background="#ededed">
-        <Grid Margin="15">
+    <Border BorderThickness="10"  Background="#ededed">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5*"/>
-                <RowDefinition Height="6.5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Grid Name="Player_Info" Grid.Row="0">
+            <!-- ************************************ Top Grid ************************************************ -->
+            <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2.5*"/>
-                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Contacts" Grid.Row="0" Style="{StaticResource Regular_TB}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <Image Name="ProfilePicture" Source="/Ressources/Images/Profile.png" HorizontalAlignment="Left" Grid.Column="0"/>
-
-                <Grid Grid.Column="1" Margin="20,10,0,15">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1.2*"/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Label Name="LB_Username" Content="Player Name" FontWeight="Bold" Grid.Row="0" VerticalAlignment="Bottom" Style="{StaticResource LB_Style_B}"/>
-                    <Label Name="LB_Level" Content="Lvl. 17" FontWeight="Bold" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource LB_Style_B}"/>
-                    <ProgressBar Name="PB_Player" Grid.Row="2" Value="70" Style="{StaticResource PB_Main}"/>
-
-
-                    <Grid Name="Grid_PlrInfos" Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="1.1*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid Grid.Column="0" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.4*"/>
-                                <ColumnDefinition Width="0.8*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Border Grid.Column="0" BorderThickness="0.2" BorderBrush="Black" CornerRadius="5" Background="White"/>
-                            <Image Grid.Column="0" Source="/Ressources/Images/Crown.png" Height="Auto" Width="Auto"/>
-                            <Label Name="LB_Victories" Grid.Column="1" Content="Victories: 0" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource LB_Style_B}"/>
-                        </Grid>
-
-                        <Grid Grid.Column="1" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.4*"/>
-                                <ColumnDefinition Width="0.8*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Border Grid.Column="0" BorderThickness="0.2" BorderBrush="Black" CornerRadius="5" Background="White"/>
-                            <Image Grid.Column="0" Source="/Ressources/Images/Time.png" Height="30" Width="30"/>
-                            <Label Name="LB_Time" Grid.Column="1" Content="Fastest Time: 0" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource LB_Style_B}"/>
-                        </Grid>
-
-                        <Grid Grid.Column="2" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.35*"/>
-                                <ColumnDefinition Width="0.8*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Border Grid.Column="0" BorderThickness="0.2" BorderBrush="Black" CornerRadius="5" Background="White"/>
-                            <Image Grid.Column="0" Source="/Ressources/Images/Answer.png" Height="30" Width="30"/>
-                            <Label Name="LB_Answers" Grid.Column="1" Content="Correct Answers: 20m" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource LB_Style_B}"/>
-
-
-                        </Grid>
-
-
-                    </Grid>
-                </Grid>
+                <Button Content="+ Add New Member" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource Btn_Menu}"/>
+            </Grid>
+            <!-- ************************************ Button Grid ************************************************ -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Content="All" Grid.Column="0" Style="{StaticResource Btn_Menu}"/>
+                <Button Content="Family" Grid.Column="1" Style="{StaticResource Btn_Menu}" />
+                <Button Content="Friends" Grid.Column="2" Style="{StaticResource Btn_Menu}"/>
+                <Button Content="Office" Grid.Column="3" Style="{StaticResource Btn_Menu}"/>
+            </Grid>
+            
+            <!-- ************************************ Filter Grid ************************************************ -->
+            <Grid Grid.Row="2" >
+                <TextBlock Name="NContacts_TB" Text="10 Total Contacts"/>
+                <!-- Add filter by-->
             </Grid>
 
-            <Grid Name="Details" Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <!-- ************************************ Content Grid ************************************************ -->
+            <Grid Grid.Row="3" >
+                <!--<Grid Height="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Image Grid.Column="2"  Source="/Ressources/Images/Time.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock Margin="7,0,0,0" Text="Reza Alavi" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" TextWrapping="Wrap"/>
+                    </StackPanel>
 
-                <Grid Name="Grid_Achievements" Grid.Column="0" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                    <TextBlock Text="Coach" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Reza.test@gmail.com" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Text="0947819241" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>-->
 
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="0.35*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="Achievements" Grid.Row="0" Style="{StaticResource LB_Style_B}"/>
-                        <Button x:Name="UploadPfpButton" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Height="31" Grid.Column="1" Click="UploadPfpButton_Click"/>
+                <ListView Name="LV_Contacts" Background="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="60">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition Width="1.3*"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
 
-                    </Grid>
+                                <TextBlock Text="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                    <ListView Name="LV_Achievements" Grid.Row="1" Background="Transparent">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.2*"/>
-                                        <ColumnDefinition Width="0.8*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.Column="0" Source="{Binding ImageUrl}" Height="50" Width="60"/>
-                                    <Label Grid.Column="1" Content="{Binding Content}" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource LB_Style_B}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Image Grid.Column="2"  Source="{Binding ImageUrl}" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="7,0,0,0" Text="{Binding ContactName}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" TextWrapping="Wrap"/>
+                                </StackPanel>
 
-                </Grid>
-
-                <Grid Name="Grid_Categories" Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="0.35*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Content="Categories" FontWeight="Bold" Grid.Row="0" Style="{StaticResource LB_Style_B}"/>
-
-                    </Grid>
-
-                    <ListView Name="LV_Categories" Grid.Row="1" Background="Transparent">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.2*"/>
-                                        <ColumnDefinition Width="0.8*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.Column="0" Source="{Binding ImageUrl}" Height="80" Width="100"/>
-                                    <Label Grid.Column="1" Content="{Binding Content}" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource LB_Style_B}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
+                                <TextBlock Text="{Binding ContactRole}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding ContactMail}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding ContactPhone}" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!-- Add filter by-->
+            </Grid>
+            <!-- ************************************ Page Grid ************************************************ -->
+            <Grid Grid.Row="4" >
+               
             </Grid>
         </Grid>
     </Border>

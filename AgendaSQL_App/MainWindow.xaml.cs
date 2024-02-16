@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgendaSQL_App.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,18 @@ namespace AgendaSQL_App
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void DashboardBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Page_Dashboard dashboardPage = new Page_Dashboard();
+            Grid_Content.Children.Clear();
+            Grid_Content.Children.Add(dashboardPage);
+        }
+
+        private void ContactsBTN_Click(object sender, RoutedEventArgs e)
+        {
+          
         }
 
         private void Page_Click(object sender, RoutedEventArgs e)
