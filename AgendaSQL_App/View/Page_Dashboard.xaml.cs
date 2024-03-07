@@ -25,12 +25,17 @@ namespace AgendaSQL_App.View
         public Page_Dashboard()
         {
             InitializeComponent();
-            dao_contact = new DAO_Contact();
-            DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
+          //  dao_contact = new DAO_Contact();
+//            DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
         }
 
 
         private void LV_Contacts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AddNewMember_Click(object sender, RoutedEventArgs e)
         {
 
         }

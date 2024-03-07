@@ -51,13 +51,22 @@ namespace AgendaSQL_App.Service.DAO
             }
         }
 
+        public IEnumerable<Contact> GetContactsStartsByName(string name)
+        {
+            using (var db = new AgendaDbContext())
+            {
+                var ListContact = db.Contacts.Where(c => c.Name.StartsWith(name)).ToList();
+                return ListContact;
+            }
+        }
+
         public IEnumerable<Contact> GetContactsByName(string name)
         {
             using (var db = new AgendaDbContext())
             {
-                return db.Contacts.Where(c => c.Name.Contains(name)).ToList();
+                var ListContact = db.Contacts.Where(c => c.Name == name).ToList();
+                return ListContact;
             }
         }
-
     }
 }
