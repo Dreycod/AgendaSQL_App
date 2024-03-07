@@ -19,12 +19,13 @@
                     </LinearGradientBrush>
                 </Border.BorderBrush>
 
-                <Grid Name="Top_Bar">
+                <Grid Name="Top_Bar" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
+                    
                     <Border Grid.Row="0" CornerRadius="10,10,0,0" MouseDown="TopBar_MouseDown">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -34,10 +35,9 @@
                             
                             <TextBlock Text="AgendaSQL App" FontSize="20" FontWeight="Bold" Margin="10"/>
 
-                            <Border Grid.Column="1" Margin="20,8,20,8" Background="{StaticResource Secondary_Background}" Width="440" HorizontalAlignment="Left" CornerRadius="20">  </Border>
-                            
-                            
+                            <Border Grid.Column="1" Margin="20,8,20,8" Background="{StaticResource Secondary_Background}" Width="440" HorizontalAlignment="Left" CornerRadius="20"/>
                             <Button Grid.Column="1" Name="Close_Btn" Content="X" Margin="10" Width="30" Click="CloseButton_Click" HorizontalAlignment="Right">
+                                
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="Transparent"/>

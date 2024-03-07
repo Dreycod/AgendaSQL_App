@@ -27,7 +27,7 @@ public partial class AgendaDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=172.31.254.158;port=3306;user=admin;password=admin;database=agenda_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.21-mariadb"));
+        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=;database=agenda_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.21-mariadb"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

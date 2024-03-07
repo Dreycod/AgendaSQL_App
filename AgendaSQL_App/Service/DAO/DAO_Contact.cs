@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AgendaSQL_App.Agenda_db;
+using Microsoft.EntityFrameworkCore;
 
 namespace AgendaSQL_App.Service.DAO
 {
@@ -50,6 +51,18 @@ namespace AgendaSQL_App.Service.DAO
                 db.SaveChanges();
             }
         }
+        public void ResetContacts()
+        {
+            using (var db = new AgendaDbContext())
+            {
+                // Remove all contacts
+                db.Database.ExecuteSqlRaw("DELETE * FROM `contact`");
+
+                // Save changes to the database
+                db.SaveChanges();
+            }
+        }
+
 
         public IEnumerable<Contact> GetContactsStartsByName(string name)
         {
