@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AgendaSQL_App.Agenda_db;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,9 +47,13 @@ namespace AgendaSQL_App.Service.DAO
         {
             using (var db = new AgendaDbContext())
             {
-                var contact = db.Contacts.Find(id);
-                db.Contacts.Remove(contact);
-                db.SaveChanges();
+                var contact = db.Contacts.SingleOrDefault(c => c.Id == id);
+                if (contact != null)
+                {
+                    db.Contacts.Remove(contact);
+                    db.SaveChanges();
+                }
+               
             }
         }
         public void ResetContacts()
@@ -56,7 +61,7 @@ namespace AgendaSQL_App.Service.DAO
             using (var db = new AgendaDbContext())
             {
                 // Remove all contacts
-                db.Database.ExecuteSqlRaw("DELETE * FROM `contact`");
+                db.Contacts.RemoveRange(db.Contacts);
 
                 // Save changes to the database
                 db.SaveChanges();

@@ -11,11 +11,11 @@
     <Border BorderThickness="10"  Background="#ededed">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="0.7*"/>
-                <RowDefinition Height="0.6*"/>
-                <RowDefinition Height="6*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="56*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="335*"/>
+                <RowDefinition Height="55.806"/>
             </Grid.RowDefinitions>
 
             <!-- ************************************ Top Grid ************************************************ -->
@@ -25,12 +25,15 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
+
                 <TextBlock Text="Contacts" Grid.Row="0" Style="{StaticResource Regular_TB}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <Button Content="+ Add New Member" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource Btn_Menu}" Click="AddNewMember_Click"/>
-                <Button Content="Reset" HorizontalAlignment="Center" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource Btn_Menu}" Click="ResetMembers_Click"/>
+                <Button Content="+ Member" Grid.Column="1"  Style="{StaticResource Btn_Menu}" Click="ToggleAddMember_Click"/>
+                <Button Content="- Member" HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource Btn_Menu}" Click="ToggleRemoveMember_Click"/>
+                <Button Content="Save" HorizontalAlignment="Center" Grid.Column="3" Style="{StaticResource Btn_Menu}" Click="SaveMembers_Click"/>
+                <Button Content="Reset" HorizontalAlignment="Center" Grid.Column="4" Style="{StaticResource Btn_Menu}" Click="ResetMembers_Click"/>
             </Grid>
             <!-- ************************************ Button Grid ************************************************ -->
             <Grid Grid.Row="1">
@@ -42,42 +45,52 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Button Content="All" Grid.Column="0" Style="{StaticResource Btn_Menu}"/>
                 <Button Content="Family" Grid.Column="1" Style="{StaticResource Btn_Menu}" />
                 <Button Content="Friends" Grid.Column="2" Style="{StaticResource Btn_Menu}"/>
                 <Button Content="Office" Grid.Column="3" Style="{StaticResource Btn_Menu}"/>
             </Grid>
-            
+
             <!-- ************************************ Filter Grid ************************************************ -->
             <Grid Grid.Row="2" >
-                
+
                 <TextBlock Name="NContacts_TB" Text="10 Total Contacts"/>
                 <!-- Add filter by-->
             </Grid>
             <!-- ************************************ Pop-Up Grid ************************************************ -->
-             <Grid Grid.Row="3" >
+            <Grid Grid.Row="3" >
                 <Popup Name="NewMemberPopup" IsOpen="False" Placement="Center">
                     <Border Background="White" BorderBrush="Black" BorderThickness="2" Padding="20">
                         <StackPanel>
                             <TextBlock Text="Add New Member" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
-                            <TextBox x:Name="NameTextBox" Text="Name" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <TextBox x:Name="PrenomTextBox" Text="Prenom" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <TextBox x:Name="AgeTextBox" Text="Age" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <TextBox x:Name="EmailTextBox" Text="Email" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <TextBox x:Name="PhoneTextBox" Text="Phone" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <TextBox x:Name="AddressTextBox" Text="Address" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <TextBox x:Name="PostalCodeTextBox" Text="Postal Code" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <TextBox x:Name="CityTextBox" Text="City" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <DatePicker x:Name="DateOfBirthPicker" Margin="0,0,0,5"/>
-                            <TextBox x:Name="CompanyTextBox" Text="Company" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <TextBox x:Name="SocialMediaTextBox" Text="Social Media Profiles" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-                            <Button Content="Save" Click="SaveNewMember_Click" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <TextBox x:Name="Add_NomTB" Text="Name" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_PrenomTB" Text="Prenom" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_AgeTB" Text="Age" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_EmailTB" Text="Email" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_PhoneTB" Text="Phone" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_AddressTB" Text="Address" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_PostalCodeTB" Text="Postal Code" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_CityTB" Text="City" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <DatePicker x:Name="Add_Date" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_CompanyTB" Text="Company" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <TextBox x:Name="Add_SocialMediaTB" Text="Social Media Profiles" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <Button Content="Add_Save" Click="SaveNewMember_Click" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+
+                <Popup Name="RemoveMemberPopup" IsOpen="False" Placement="Center">
+                    <Border Background="White" BorderBrush="Black" BorderThickness="2" Padding="20">
+                        <StackPanel>
+                            <TextBlock Text="Remove Member" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                            <TextBox x:Name="Remove_IDTB" Text="ID" Foreground="#B0B0B0" Margin="0,0,0,5"/>
+                            <Button Content="Remove" Click="RemoveMember_Click" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                         </StackPanel>
                     </Border>
                 </Popup>
             </Grid>
-            
+
             <!-- ************************************ Content Grid ************************************************ -->
             <Grid Grid.Row="3" >
                 <!--<Grid Height="60">
@@ -102,10 +115,10 @@
                 </Grid>-->
 
                 <DataGrid Name="DG_Contacts">
-                    
+
                 </DataGrid>
-                
-                <ListView Name="LV_Contacts" Background="Transparent" SelectionChanged="LV_Contacts_SelectionChanged">
+
+                <!--<ListView Name="LV_Contacts" Background="Transparent">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="60">
@@ -130,12 +143,12 @@
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
                 <!-- Add filter by-->
             </Grid>
             <!-- ************************************ Page Grid ************************************************ -->
             <Grid Grid.Row="4" >
-               
+
             </Grid>
         </Grid>
     </Border>

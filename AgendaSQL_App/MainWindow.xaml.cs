@@ -24,6 +24,8 @@ namespace AgendaSQL_App
         public MainWindow()
         {
             InitializeComponent();
+            Page_Dashboard dashboardPage = new Page_Dashboard();
+            Grid_Content.Children.Add(dashboardPage);
         }
         private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
         {

@@ -31,34 +31,47 @@ namespace AgendaSQL_App.View
         }
 
 
-        private void LV_Contacts_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void AddNewMember_Click(object sender, RoutedEventArgs e)
+        private void ToggleAddMember_Click(object sender, RoutedEventArgs e)
         {
             NewMemberPopup.IsOpen = true;
         }
+        private void ToggleRemoveMember_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveMemberPopup.IsOpen = true;
+        }
 
+        private void RemoveMember_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(Remove_IDTB.Text);
+            dao_contact.DeleteContact(id);
+            RemoveMemberPopup.IsOpen = false;
+            DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
+        }
+        private void SaveMembers_Click(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<Contact> contacts = DG_Contacts.ItemsSource as IEnumerable<Contact>;
+            foreach (Contact contact in contacts)
+            {
+                dao_contact.UpdateContact(contact);
+            }
+        }
         private void SaveNewMember_Click(object sender, RoutedEventArgs e)
         {
             // Retrieve values from text boxes and date picker
-            string name = NameTextBox.Text;
-            string prenom = PrenomTextBox.Text;
-            int age = int.Parse(AgeTextBox.Text); // Assuming age is an integer
-            string email = EmailTextBox.Text;
-            string phone = PhoneTextBox.Text;
-            string address = AddressTextBox.Text;
-            string postalCode = PostalCodeTextBox.Text;
-            string city = CityTextBox.Text;
-            DateTime? dateOfBirth = DateOfBirthPicker.SelectedDate;
-            string company = CompanyTextBox.Text;
-            string socialMediaProfiles = SocialMediaTextBox.Text;
+            string name = Add_NomTB.Text;
+            string prenom = Add_PrenomTB.Text;
+            int age = int.Parse(Add_AgeTB.Text); // Assuming age is an integer
+            string email = Add_EmailTB.Text;
+            string phone = Add_PhoneTB.Text;
+            string address = Add_AddressTB.Text;
+            string postalCode = Add_PostalCodeTB.Text;
+            string city = Add_CityTB.Text;
+            DateTime? dateOfBirth = Add_Date.SelectedDate;
+            string company = Add_CompanyTB.Text;
+            string socialMediaProfiles = Add_SocialMediaTB.Text;
 
             Contact contact = new Contact
             {
-                Id = 4, // auto increment ? 
                 Name = name,
                 Prenom = prenom,
                 Age = age,
@@ -68,13 +81,12 @@ namespace AgendaSQL_App.View
                 Codepostal = postalCode,
                 Ville = city,
                 Dateofbirth = dateOfBirth.ToString(),
-                Entreprise = company
+                Entreprise = company,
             };
 
             dao_contact.AddContact(contact);
-
-            // Save the new member's information as needed
-            // You can implement your logic here, such as saving to a database or updating UI
+            NewMemberPopup.IsOpen = false; 
+            DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
         }
 
         private void ClosePopup_Click(object sender, RoutedEventArgs e)

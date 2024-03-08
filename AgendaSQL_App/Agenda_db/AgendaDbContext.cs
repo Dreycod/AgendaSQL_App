@@ -27,7 +27,7 @@ public partial class AgendaDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=;database=agenda_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.21-mariadb"));
+        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;database=agenda_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.21-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,15 +41,11 @@ public partial class AgendaDbContext : DbContext
 
             entity.ToTable("contact");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Addresse)
                 .HasMaxLength(45)
                 .HasColumnName("addresse");
-            entity.Property(e => e.Age)
-                .HasColumnType("int(11)")
-                .HasColumnName("age");
+            entity.Property(e => e.Age).HasColumnName("age");
             entity.Property(e => e.Codepostal)
                 .HasMaxLength(45)
                 .HasColumnName("codepostal");
@@ -82,9 +78,7 @@ public partial class AgendaDbContext : DbContext
 
             entity.ToTable("reseaux_media");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Logourl)
                 .HasColumnType("text")
                 .HasColumnName("logourl");
@@ -107,14 +101,9 @@ public partial class AgendaDbContext : DbContext
 
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
-                .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.ContactId)
-                .HasColumnType("int(11)")
-                .HasColumnName("contact_id");
-            entity.Property(e => e.ReseauxMediaId)
-                .HasColumnType("int(11)")
-                .HasColumnName("reseaux_media_id");
+            entity.Property(e => e.ContactId).HasColumnName("contact_id");
+            entity.Property(e => e.ReseauxMediaId).HasColumnName("reseaux_media_id");
             entity.Property(e => e.Followers)
                 .HasMaxLength(45)
                 .HasColumnName("followers");
@@ -140,11 +129,9 @@ public partial class AgendaDbContext : DbContext
         {
             entity.HasKey(e => e.IdTodolist).HasName("PRIMARY");
 
-            entity.ToTable("Todolist");
+            entity.ToTable("todolist");
 
-            entity.Property(e => e.IdTodolist)
-                .HasColumnType("int(11)")
-                .HasColumnName("idTodolist");
+            entity.Property(e => e.IdTodolist).HasColumnName("idTodolist");
             entity.Property(e => e.Genre)
                 .HasColumnType("enum('Friends','Voyage','Quotidien')")
                 .HasColumnName("genre");
@@ -165,14 +152,9 @@ public partial class AgendaDbContext : DbContext
 
             entity.Property(e => e.Idtâches)
                 .ValueGeneratedOnAdd()
-                .HasColumnType("int(11)")
                 .HasColumnName("idtâches");
-            entity.Property(e => e.TodolistIdTodolist)
-                .HasColumnType("int(11)")
-                .HasColumnName("Todolist_idTodolist");
-            entity.Property(e => e.Fait)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("fait");
+            entity.Property(e => e.TodolistIdTodolist).HasColumnName("Todolist_idTodolist");
+            entity.Property(e => e.Fait).HasColumnName("fait");
             entity.Property(e => e.Nom)
                 .HasMaxLength(45)
                 .HasColumnName("nom");
