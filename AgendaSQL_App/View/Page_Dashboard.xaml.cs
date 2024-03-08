@@ -98,5 +98,13 @@ namespace AgendaSQL_App.View
         {
             dao_contact.ResetContacts();
         }
+        private void CancelAddPopup_Click(object sender, RoutedEventArgs e)
+        {
+            NewMemberPopup.IsOpen = false;
+        }
+        private void CancelRemovePopup_Click(object sender, RoutedEventArgs e)
+        {
+            RemoveMemberPopup.IsOpen = false;
+        }
     }
 }

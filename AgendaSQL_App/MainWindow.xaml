@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AgendaSQL_App"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
         Title="MainWindow" Height="697" Width="1059">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    
     <Window.Template>
         <ControlTemplate TargetType="{x:Type Window}">
             <Border BorderThickness="3" CornerRadius="10" Background="White">
@@ -75,7 +80,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
-
+       
         <!-- ********************** Content *************************** -->
         <Grid Name="Grid_Content"  Grid.Column="1" Background="Transparent">
         </Grid>
@@ -97,42 +102,70 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Style="{StaticResource Regular_TB}" Text="MAIN MENU" Name="CurrentPage_TB" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-            <Button Name="Dashboard_Btn" Grid.Row="1" Style="{StaticResource Btn_Menu}" Click="DashboardBTN_Click">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="Ressources/Images/Time.png" Width="30" Height="30" Margin="10"/>
-                    <TextBlock Text="Dashboard" FontSize="20" FontWeight="Bold" Margin="10"/>
-                </StackPanel>
-            </Button>
-
-            <Button Name="Contacts_Btn" Grid.Row="1" Style="{StaticResource Btn_Menu}" Click="Page_Click" HorizontalAlignment="Left" Margin="0,53,0,0" Grid.RowSpan="2" Width="186">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="Ressources/Images/Time.png" Width="30" Height="30" Margin="10"/>
-                    <TextBlock Text="Contacts" FontSize="20" FontWeight="Bold" Margin="10"/>
-                </StackPanel>
-            </Button>
-            
-            <Button Name="Tasks_Btn" Grid.Row="2" Style="{StaticResource Btn_Menu}" Click="Page_Click" HorizontalAlignment="Left" Margin="0,53,0,0" Grid.RowSpan="2" Width="186">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="Ressources/Images/Time.png" Width="30" Height="30" Margin="10"/>
-                    <TextBlock Text="Tasks" FontSize="20" FontWeight="Bold" Margin="10"/>
-                </StackPanel>
-            </Button>
-
-            <Button Name="Messages_Btn" Grid.Row="1" Style="{StaticResource Btn_Menu}" Click="Page_Click" HorizontalAlignment="Left" Margin="0,53,0,0" Grid.RowSpan="2" Width="186">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="Ressources/Images/Time.png" Width="30" Height="30" Margin="10"/>
-                    <TextBlock Text="Contacts" FontSize="20" FontWeight="Bold" Margin="10"/>
-                </StackPanel>
-            </Button>
+       
             
         </Grid>
 
         <!-- ********************** End of Dashboard ******************* -->
         <!-- ********************** Boutons ******************* -->
+        <Border Grid.Row="1" Background="LightGray" CornerRadius="0 50 0 30">
+            <DockPanel>
+                <!--Menu Logo-->
+                <!--Menu Titles-->
+                <TextBlock Text="André Suzuki" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                <TextBlock Text="Members, Annecy" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+
+                <!--Menu Seprator-->
+                <Separator Margin="25" Background="White" DockPanel.Dock="Top" Height="0.8"/>
+
+                <!--Menu Buttons-->
+                <StackPanel DockPanel.Dock="Top" >
+                    <Button Click="DashboardBTN_Click" Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Dashboard"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Events"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Contacts"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Task"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="ForumOutline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Messages"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+                <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Logout"/>
+                    </StackPanel>
+                </Button>
+
+            </DockPanel>
+        </Border>
         <!-- ********************** End of Boutons ******************* -->
-
-
     </Grid>
 </Window>
