@@ -27,5 +27,7 @@ public partial class Contact
 
     public string? Entreprise { get; set; }
 
+    public string Relationship { get; set; } = null!;
+
     public virtual ICollection<ReseauxProfile> ReseauxProfiles { get; set; } = new List<ReseauxProfile>();
 }

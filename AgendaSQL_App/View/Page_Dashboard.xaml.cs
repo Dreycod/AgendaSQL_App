@@ -48,18 +48,6 @@ namespace AgendaSQL_App.View
         {
             NewMemberPopup.IsOpen = true;
         }
-        private void ToggleRemoveMember_Click(object sender, RoutedEventArgs e)
-        {
-            RemoveMemberPopup.IsOpen = true;
-        }
-
-        private void RemoveMember_Click(object sender, RoutedEventArgs e)
-        {
-            int id = int.Parse(Remove_IDTB.Text);
-            dao_contact.DeleteContact(id);
-            RemoveMemberPopup.IsOpen = false;
-            DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
-        }
         private void SaveMembers_Click(object sender, RoutedEventArgs e)
         {
             IEnumerable<Contact> contacts = DG_Contacts.ItemsSource as IEnumerable<Contact>;
@@ -81,6 +69,7 @@ namespace AgendaSQL_App.View
             string city = Add_CityTB.Text;
             DateTime? dateOfBirth = Add_Date.SelectedDate;
             string company = Add_CompanyTB.Text;
+            string relationship = Add_RelationshipTB.Text;
             string socialMediaProfiles = Add_SocialMediaTB.Text;
 
             Contact contact = new Contact
@@ -92,6 +81,7 @@ namespace AgendaSQL_App.View
                 Phone = phone,
                 Addresse = address,
                 Codepostal = postalCode,
+                Relationship = relationship,
                 Ville = city,
                 Dateofbirth = dateOfBirth.ToString(),
                 Entreprise = company,
@@ -115,9 +105,28 @@ namespace AgendaSQL_App.View
         {
             NewMemberPopup.IsOpen = false;
         }
-        private void CancelRemovePopup_Click(object sender, RoutedEventArgs e)
+        private void Relationship_Click(object sender, RoutedEventArgs e)
         {
-            RemoveMemberPopup.IsOpen = false;
+            string Content = (sender as Button).Content.ToString();
+            if (Content == "All")
+            {
+                DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
+            }
+            else
+            {
+                DG_Contacts.ItemsSource = dao_contact.GetContactsByRelationship(Content);
+            }
+        }
+        private void DeleteContact_Click(object sender, RoutedEventArgs e)
+        {
+            Contact contact = (Contact)DG_Contacts.SelectedItem;
+            dao_contact.DeleteContact(contact.Id);
+            UpdateContacts();
+        }
+
+        private void EditContact_Click(object sender, RoutedEventArgs e)
+        {
+            Contact contact = (Contact)DG_Contacts.SelectedItem;
         }
     }
 }

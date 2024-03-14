@@ -32,7 +32,7 @@ public partial class AgendaDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .UseCollation("utf8mb4_general_ci")
+            .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
         modelBuilder.Entity<Contact>(entity =>
@@ -67,6 +67,9 @@ public partial class AgendaDbContext : DbContext
             entity.Property(e => e.Prenom)
                 .HasMaxLength(45)
                 .HasColumnName("prenom");
+            entity.Property(e => e.Relationship)
+                .HasColumnType("enum('Famille','Amis','Travail')")
+                .HasColumnName("relationship");
             entity.Property(e => e.Ville)
                 .HasMaxLength(45)
                 .HasColumnName("ville");

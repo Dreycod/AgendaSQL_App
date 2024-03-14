@@ -86,5 +86,15 @@ namespace AgendaSQL_App.Service.DAO
                 return ListContact;
             }
         }
+
+        // Get contact by relationship
+        public IEnumerable<Contact> GetContactsByRelationship(string relationship)
+        {
+            using (var db = new AgendaDbContext())
+            {
+                var ListContact = db.Contacts.Where(c => c.Relationship == relationship).ToList();
+                return ListContact;
+            }
+        }
     }
 }
