@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,19 @@ namespace AgendaSQL_App.View
         {
             InitializeComponent();
             dao_contact = new DAO_Contact();
+            UpdateContacts();
+        }
+
+        private void UpdateContacts()
+        {
             DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
+            ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
+
+            foreach (Contact contact in dao_contact.GetAllContacts())
+            {
+                contacts.Add(contact);
+            }
+            DG_Contacts.ItemsSource = contacts;
         }
 
 

@@ -86,25 +86,6 @@
         </Grid>
         <!-- ********************** End of Content ********************* -->
         <!-- ********************** Dashboard ************************** -->
-        <Grid Name="Grid_Buttons" Grid.Column="0" Background="Transparent" Margin="25,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-       
-            
-        </Grid>
 
         <!-- ********************** End of Dashboard ******************* -->
         <!-- ********************** Boutons ******************* -->
