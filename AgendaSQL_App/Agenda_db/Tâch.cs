@@ -12,7 +12,7 @@ public partial class Tâch
     public sbyte Fait { get; set; }
 
     public int TodolistIdTodolist { get; set; }
-
+ 
     public DateTime? Temps { get; set; }
 
     public virtual Todolist TodolistIdTodolistNavigation { get; set; } = null!;

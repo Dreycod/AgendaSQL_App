@@ -46,8 +46,10 @@ namespace AgendaSQL_App.View
 
         private void ToggleAddMember_Click(object sender, RoutedEventArgs e)
         {
-            NewMemberPopup.IsOpen = true;
+            Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this);
+            window_ContactInfo.Show();
         }
+
         private void SaveMembers_Click(object sender, RoutedEventArgs e)
         {
             IEnumerable<Contact> contacts = DG_Contacts.ItemsSource as IEnumerable<Contact>;
@@ -56,54 +58,9 @@ namespace AgendaSQL_App.View
                 dao_contact.UpdateContact(contact);
             }
         }
-        private void SaveNewMember_Click(object sender, RoutedEventArgs e)
-        {
-            // Retrieve values from text boxes and date picker
-            string name = Add_NomTB.Text;
-            string prenom = Add_PrenomTB.Text;
-            int age = int.Parse(Add_AgeTB.Text); // Assuming age is an integer
-            string email = Add_EmailTB.Text;
-            string phone = Add_PhoneTB.Text;
-            string address = Add_AddressTB.Text;
-            string postalCode = Add_PostalCodeTB.Text;
-            string city = Add_CityTB.Text;
-            DateTime? dateOfBirth = Add_Date.SelectedDate;
-            string company = Add_CompanyTB.Text;
-            string relationship = Add_RelationshipTB.Text;
-            string socialMediaProfiles = Add_SocialMediaTB.Text;
-
-            Contact contact = new Contact
-            {
-                Name = name,
-                Prenom = prenom,
-                Age = age,
-                Email = email,
-                Phone = phone,
-                Addresse = address,
-                Codepostal = postalCode,
-                Relationship = relationship,
-                Ville = city,
-                Dateofbirth = dateOfBirth.ToString(),
-                Entreprise = company,
-            };
-
-            dao_contact.AddContact(contact);
-            NewMemberPopup.IsOpen = false; 
-            DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
-        }
-
-        private void ClosePopup_Click(object sender, RoutedEventArgs e)
-        {
-            NewMemberPopup.IsOpen = false;
-        }
-
         private void ResetMembers_Click(object sender, RoutedEventArgs e)
         {
             dao_contact.ResetContacts();
-        }
-        private void CancelAddPopup_Click(object sender, RoutedEventArgs e)
-        {
-            NewMemberPopup.IsOpen = false;
         }
         private void Relationship_Click(object sender, RoutedEventArgs e)
         {
