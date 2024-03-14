@@ -43,7 +43,6 @@ namespace AgendaSQL_App.View
             DG_Contacts.ItemsSource = contacts;
         }
 
-
         private void ToggleAddMember_Click(object sender, RoutedEventArgs e)
         {
             Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this,null);
@@ -86,6 +85,20 @@ namespace AgendaSQL_App.View
             Contact contact = (Contact)DG_Contacts.SelectedItem;
             Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, contact);
             window_ContactInfo.Show();
+        }
+
+        private void textBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Get the text from the text box and use it to filter the list
+            string filter = textBoxFilter.Text;
+            if (filter == "")
+            {
+                DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
+            }
+            else
+            {
+                DG_Contacts.ItemsSource = dao_contact.GetContactsStartsByPrenom(filter);
+            }
         }
     }
 }

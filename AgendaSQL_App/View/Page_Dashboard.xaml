@@ -36,7 +36,6 @@
                 <TextBlock Text="Contacts" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
                 <Button Content="+ Member" HorizontalAlignment="Center" Grid.Column="1"  Style="{StaticResource addButton}" Click="ToggleAddMember_Click"/>
-                <Button Content="Save" HorizontalAlignment="Center" Grid.Column="2" Style="{StaticResource addButton}" Click="SaveMembers_Click"/>
                 <Button Content="Reset" HorizontalAlignment="Center" Grid.Column="3" Style="{StaticResource addButton}" Click="ResetMembers_Click"/>
             </Grid>
             <!-- ************************************ Button Grid ************************************************ -->
@@ -59,7 +58,7 @@
                     <TextBlock Margin="0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Search in Members ..."
                            Visibility="{Binding ElementName=textBoxFilter, Converter={StaticResource BoolToVis}}" />
-                    <TextBox Margin="0" Name="textBoxFilter" Style="{StaticResource filterTextBox}"/>
+                    <TextBox Margin="0" Name="textBoxFilter" Style="{StaticResource filterTextBox}" TextChanged="textBoxFilter_TextChanged"/>
                 </Grid>
                 <!-- Add filter by-->
             </Grid>

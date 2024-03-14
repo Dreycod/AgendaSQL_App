@@ -2,6 +2,7 @@
 using AgendaSQL_App.Service.DAO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,14 +50,13 @@ namespace AgendaSQL_App.View
             CityTB.Text = presetContact.Ville;
             Date.SelectedDate = DateTime.Parse(presetContact.Dateofbirth);
             CompanyTB.Text = presetContact.Entreprise;
-            RelationshipCB.SelectedValue = presetContact.Relationship;
         }
         private void SaveNewMember_Click(object sender, RoutedEventArgs e)
         {
             // Retrieve values from text boxes and date picker
             string name = NomTB.Text;
             string prenom = PrenomTB.Text;
-            int age = int.Parse(AgeTB.Text); // Assuming age is an integer
+            int age = int.Parse(AgeTB.Text); 
             string email = EmailTB.Text;
             string phone = PhoneTB.Text;
             string address = AddressTB.Text;
@@ -64,9 +64,10 @@ namespace AgendaSQL_App.View
             string city = CityTB.Text;
             DateTime? dateOfBirth = Date.SelectedDate;
             string company = CompanyTB.Text;
-            string relationship = RelationshipCB.SelectedValue.ToString();
-            string socialMediaProfiles = SocialMediaTB.Text;
+            string relationship = RelationshipCB.SelectedItem.ToString();
+            relationship = relationship.Substring(38);
 
+            MessageBox.Show(relationship);
             Contact contact = new Contact
             {
                 Name = name,
