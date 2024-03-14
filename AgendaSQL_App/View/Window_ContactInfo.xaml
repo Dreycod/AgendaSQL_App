@@ -6,24 +6,32 @@
         xmlns:local="clr-namespace:AgendaSQL_App.View"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="Window_ContactInfo" Height="450" Width="800">
-    
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" Padding="20">
-        <StackPanel>
-            <TextBlock Text="Add New Member" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" Style="{StaticResource Regular_TB}"/>
-            <TextBox x:Name="NomTB" Text="Name" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="PrenomTB" Text="Prenom" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="AgeTB" Text="Age" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="EmailTB" Text="Email" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="PhoneTB" Text="Phone" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="AddressTB" Text="Address" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="PostalCodeTB" Text="Postal Code" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="CityTB" Text="City" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="RelationshipTB" Text="Amis" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <DatePicker x:Name="Date" Margin="0,0,0,5"/>
-            <TextBox x:Name="CompanyTB" Text="Company" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <TextBox x:Name="SocialMediaTB" Text="Social Media Profiles" Foreground="#B0B0B0" Margin="0,0,0,5"/>
-            <Button Content="Add_Save" HorizontalAlignment="Center" Margin="0,10,0,0" Click="SaveNewMember_Click"/>
-        </StackPanel>
-    </Border>
+        Title="Window_ContactInfo" Height="570" Width="500">
+    <Grid>
+        <Border Background="White" BorderBrush="Black" BorderThickness="2" Padding="20">
+            <StackPanel>
+                <TextBlock Text="Add New Member" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                <TextBox x:Name="NomTB" Text="Name" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <TextBox x:Name="PrenomTB" Text="Prenom" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <TextBox x:Name="AgeTB" Text="Age" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <TextBox x:Name="EmailTB" Text="Email" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <TextBox x:Name="PhoneTB" Text="Phone" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <TextBox x:Name="AddressTB" Text="Address" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <TextBox x:Name="PostalCodeTB" Text="Postal Code" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <TextBox x:Name="CityTB" Text="City" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+
+                <ComboBox x:Name="RelationshipCB" Text="Amis" SelectedValue="Amis">
+                    <ComboBoxItem Content="Amis"/>
+                    <ComboBoxItem Content="Famille"/>
+                    <ComboBoxItem Content="Travail"/>
+                </ComboBox>
+
+
+                <DatePicker x:Name="Date" Margin="0,0,0,5"/>
+                <TextBox x:Name="CompanyTB" Text="Company" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <TextBox x:Name="SocialMediaTB" Text="Social Media Profiles" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+                <Button Content="Add_Save" HorizontalAlignment="Center" Click="SaveNewMember_Click" Style="{StaticResource gridEditButton}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Window>

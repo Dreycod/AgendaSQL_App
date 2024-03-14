@@ -42,15 +42,5 @@ namespace AgendaSQL_App
             Grid_Content.Children.Clear();
             Grid_Content.Children.Add(dashboardPage);
         }
-
-        private void ContactsBTN_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
-
-        private void Page_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

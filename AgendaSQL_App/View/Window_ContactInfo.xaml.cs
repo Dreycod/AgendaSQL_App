@@ -23,11 +23,33 @@ namespace AgendaSQL_App.View
     {
         DAO_Contact dao_contact;
         Page_Dashboard page_dashboard;
-        public Window_ContactInfo(Page_Dashboard p_dash)
+        Contact presetContact;
+        public Window_ContactInfo(Page_Dashboard p_dash, Contact contact)
         {
             InitializeComponent();
             dao_contact = new DAO_Contact();
             page_dashboard = p_dash;
+            if (contact != null)
+            {
+               presetContact = contact;
+               EditMember();
+            }
+        }
+
+        private void EditMember()
+        {
+            // Rempli les TB avec les données du preset contact
+            NomTB.Text = presetContact.Name;
+            PrenomTB.Text = presetContact.Prenom;
+            AgeTB.Text = presetContact.Age.ToString();
+            EmailTB.Text = presetContact.Email;
+            PhoneTB.Text = presetContact.Phone;
+            AddressTB.Text = presetContact.Addresse;
+            PostalCodeTB.Text = presetContact.Codepostal;
+            CityTB.Text = presetContact.Ville;
+            Date.SelectedDate = DateTime.Parse(presetContact.Dateofbirth);
+            CompanyTB.Text = presetContact.Entreprise;
+            RelationshipCB.SelectedValue = presetContact.Relationship;
         }
         private void SaveNewMember_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +64,7 @@ namespace AgendaSQL_App.View
             string city = CityTB.Text;
             DateTime? dateOfBirth = Date.SelectedDate;
             string company = CompanyTB.Text;
-            string relationship = RelationshipTB.Text;
+            string relationship = RelationshipCB.SelectedValue.ToString();
             string socialMediaProfiles = SocialMediaTB.Text;
 
             Contact contact = new Contact
@@ -60,7 +82,15 @@ namespace AgendaSQL_App.View
                 Entreprise = company,
             };
 
-            dao_contact.AddContact(contact);
+            if (presetContact != null)
+            {
+                contact.Id = presetContact.Id;
+                dao_contact.UpdateContact(contact);
+            }
+            else
+            {
+              dao_contact.AddContact(contact);
+            }
             page_dashboard.DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
             this.Close();
         }

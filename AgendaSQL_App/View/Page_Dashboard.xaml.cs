@@ -46,7 +46,7 @@ namespace AgendaSQL_App.View
 
         private void ToggleAddMember_Click(object sender, RoutedEventArgs e)
         {
-            Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this);
+            Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this,null);
             window_ContactInfo.Show();
         }
 
@@ -84,6 +84,8 @@ namespace AgendaSQL_App.View
         private void EditContact_Click(object sender, RoutedEventArgs e)
         {
             Contact contact = (Contact)DG_Contacts.SelectedItem;
+            Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, contact);
+            window_ContactInfo.Show();
         }
     }
 }
