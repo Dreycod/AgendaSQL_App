@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AgendaSQL_App.Agenda_db;
+using AgendaSQL_App.Service.DAO;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,18 +15,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AgendaSQL_App.Agenda_db;
-using AgendaSQL_App.Service.DAO;
 
 namespace AgendaSQL_App.View
 {
     /// <summary>
-    /// Logique d'interaction pour Page_Dashboard.xaml
+    /// Logique d'interaction pour Page_Contacts.xaml
     /// </summary>
-    public partial class Page_Dashboard : UserControl
+    public partial class Page_Contacts : UserControl
     {
         DAO_Contact dao_contact;
-        public Page_Dashboard()
+        public Page_Contacts()
         {
             InitializeComponent();
             dao_contact = new DAO_Contact();
@@ -41,11 +41,14 @@ namespace AgendaSQL_App.View
                 contacts.Add(contact);
             }
             DG_Contacts.ItemsSource = contacts;
+
+            int count = DG_Contacts.Items.Count;
+            TotalContactsTB.Text = count.ToString()+" Total Contacts";
         }
 
         private void ToggleAddMember_Click(object sender, RoutedEventArgs e)
         {
-            Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this,null);
+            Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, null);
             window_ContactInfo.Show();
         }
 
@@ -89,8 +92,8 @@ namespace AgendaSQL_App.View
 
         private void textBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // Get the text from the text box and use it to filter the list
             string filter = textBoxFilter.Text;
+
             if (filter == "")
             {
                 DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
@@ -102,3 +105,4 @@ namespace AgendaSQL_App.View
         }
     }
 }
+

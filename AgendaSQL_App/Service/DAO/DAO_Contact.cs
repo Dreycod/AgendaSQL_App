@@ -105,5 +105,12 @@ namespace AgendaSQL_App.Service.DAO
                 return ListContact;
             }
         }
+        public bool DatabaseExists()
+        {
+            using (var db = new AgendaDbContext())
+            {
+                return db.Database.CanConnect();
+            }
+        }
     }
 }

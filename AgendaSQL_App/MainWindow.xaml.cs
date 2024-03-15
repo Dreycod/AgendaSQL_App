@@ -1,4 +1,5 @@
-﻿using AgendaSQL_App.View;
+﻿using AgendaSQL_App.Service.DAO;
+using AgendaSQL_App.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,16 @@ namespace AgendaSQL_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        DAO_Contact DAO_Contact;
         public MainWindow()
         {
             InitializeComponent();
-            Page_Dashboard dashboardPage = new Page_Dashboard();
-            Grid_Content.Children.Add(dashboardPage);
+            DAO_Contact = new DAO_Contact();
+            if (DAO_Contact.DatabaseExists() == false)
+            {
+                Accueil_BTN.IsEnabled = false;
+            }
+
         }
         private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -38,7 +44,7 @@ namespace AgendaSQL_App
 
         private void DashboardBTN_Click(object sender, RoutedEventArgs e)
         {
-            Page_Dashboard dashboardPage = new Page_Dashboard();
+            Page_Contacts dashboardPage = new Page_Contacts();
             Grid_Content.Children.Clear();
             Grid_Content.Children.Add(dashboardPage);
         }

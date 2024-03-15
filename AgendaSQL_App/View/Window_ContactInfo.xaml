@@ -36,37 +36,37 @@
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Add New Member" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"/>
 
         <TextBlock Grid.Row="1" Text="Nom" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="NomTB" Text="Name" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="NomTB"  Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="2" Text="Prenom" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="PrenomTB" Text="Prenom" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="PrenomTB" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Age" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="AgeTB" Text="Age" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="AgeTB" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Email" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="4" Grid.Column="1" x:Name="EmailTB" Text="Email" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="EmailTB"  Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="5" Grid.Column="0"  Text="Phone" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="5" Grid.Column="1"  x:Name="PhoneTB" Text="Phone" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="5" Grid.Column="1"  x:Name="PhoneTB"  Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="6" Grid.Column="0" Text="Address" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="6" Grid.Column="1" x:Name="AddressTB" Text="Address" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="6" Grid.Column="1" x:Name="AddressTB"  Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="7" Grid.Column="0" Text="Postal Code" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="7" Grid.Column="1" x:Name="PostalCodeTB" Text="Postal Code" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="7" Grid.Column="1" x:Name="PostalCodeTB"  Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="8" Grid.Column="0" Text="City" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="8" Grid.Column="1"  x:Name="CityTB" Text="City" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="8" Grid.Column="1"  x:Name="CityTB"  Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="9" Grid.Column="0" Text="Company" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="9" Grid.Column="1" x:Name="CompanyTB" Text="Company" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="9" Grid.Column="1" x:Name="CompanyTB"  Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
         <TextBlock Grid.Row="10" Grid.Column="0" Text="Social Media" FontSize="15" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Grid.Row="10" Grid.Column="1" x:Name="SocialMediaTB" Text="Social Media Profiles" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
+        <TextBox Grid.Row="10" Grid.Column="1" x:Name="SocialMediaTB" Foreground="#B0B0B0" Margin="0,0,0,5" Style="{StaticResource filterTextBox}"/>
 
 
-        <ComboBox Grid.Row="11" Grid.ColumnSpan="2" x:Name="RelationshipCB" Text="Amis" SelectedValue="Amis">
+        <ComboBox Grid.Row="11" Grid.ColumnSpan="2" x:Name="RelationshipCB">
             <ComboBoxItem Content="Amis"/>
             <ComboBoxItem Content="Famille"/>
             <ComboBoxItem Content="Travail"/>

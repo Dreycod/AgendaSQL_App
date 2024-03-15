@@ -23,9 +23,9 @@ namespace AgendaSQL_App.View
     public partial class Window_ContactInfo : Window
     {
         DAO_Contact dao_contact;
-        Page_Dashboard page_dashboard;
+        Page_Contacts page_dashboard;
         Contact presetContact;
-        public Window_ContactInfo(Page_Dashboard p_dash, Contact contact)
+        public Window_ContactInfo(Page_Contacts p_dash, Contact contact)
         {
             InitializeComponent();
             dao_contact = new DAO_Contact();
@@ -39,7 +39,7 @@ namespace AgendaSQL_App.View
 
         private void EditMember()
         {
-            // Rempli les TB avec les données du preset contact
+
             NomTB.Text = presetContact.Name;
             PrenomTB.Text = presetContact.Prenom;
             AgeTB.Text = presetContact.Age.ToString();
@@ -51,12 +51,13 @@ namespace AgendaSQL_App.View
             Date.SelectedDate = DateTime.Parse(presetContact.Dateofbirth);
             CompanyTB.Text = presetContact.Entreprise;
         }
+
         private void SaveNewMember_Click(object sender, RoutedEventArgs e)
         {
             // Retrieve values from text boxes and date picker
             string name = NomTB.Text;
             string prenom = PrenomTB.Text;
-            int age = int.Parse(AgeTB.Text); 
+            string str_age = AgeTB.Text;
             string email = EmailTB.Text;
             string phone = PhoneTB.Text;
             string address = AddressTB.Text;
@@ -64,10 +65,36 @@ namespace AgendaSQL_App.View
             string city = CityTB.Text;
             DateTime? dateOfBirth = Date.SelectedDate;
             string company = CompanyTB.Text;
-            string relationship = RelationshipCB.SelectedItem.ToString();
-            relationship = relationship.Substring(38);
 
-            MessageBox.Show(relationship);
+            string relationship;
+            int age;
+
+
+            // Verify that all required fields are filled
+            if (name == "" || prenom == "" || str_age == "" || email == "" || phone == "" || address == "" || postalCode == "" || city == "" || dateOfBirth == null || company == "")
+            {
+                MessageBox.Show("Please fill all required fields");
+                return;
+            }
+            if (RelationshipCB.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a relationship");
+                return;
+            }
+
+            // Convert age to int
+            try
+            {
+                age = int.Parse(str_age);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter a valid age");
+                return;
+            }
+
+            relationship = RelationshipCB.SelectedItem.ToString().Substring(38);
+
             Contact contact = new Contact
             {
                 Name = name,
