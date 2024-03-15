@@ -102,6 +102,7 @@ namespace AgendaSQL_App.View
             {
                 DG_Contacts.ItemsSource = dao_contact.GetContactsStartsByPrenom(filter);
             }
+            
         }
     }
 }
