@@ -99,7 +99,7 @@
 
                 <!--Menu Buttons-->
                 <StackPanel DockPanel.Dock="Top" >
-                    <Button Name="Accueil_BTN" Click="DashboardBTN_Click" Style="{StaticResource menuButton}">
+                    <Button Name="Accueil_BTN" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Accueil"/>
@@ -113,14 +113,14 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource menuButton}">
+                    <Button Click="ContactsBTN_Click" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Contacts"/>
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource menuButton}">
+                    <Button Click="Todolist_BTNClick" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Tâches"/>

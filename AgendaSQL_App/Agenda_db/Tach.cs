@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace AgendaSQL_App.Agenda_db;
 
-public partial class Tâch
+public partial class Tach
 {
-    public int Idtâches { get; set; }
+    public int Idtaches { get; set; }
 
     public string? Nom { get; set; }
 
     public sbyte Fait { get; set; }
 
-    public int TodolistIdTodolist { get; set; }
- 
     public DateTime? Temps { get; set; }
 
-    public virtual Todolist TodolistIdTodolistNavigation { get; set; } = null!;
+    public int TodolistId { get; set; }
+
+    public virtual Todolist Todolist { get; set; } = null!;
 }
