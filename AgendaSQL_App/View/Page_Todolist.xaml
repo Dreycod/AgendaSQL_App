@@ -77,9 +77,6 @@
                                         <Button Margin="-5 0 0 0"  Style="{StaticResource gridEditButton}" Click="OpenTaches_Click">
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
-                                        <Button Margin="5 0 0 0" Style="{StaticResource gridEditButton}" Click="EditTodolist_Click">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
                                         <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Click="DeleteTodolist_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
                                         </Button>

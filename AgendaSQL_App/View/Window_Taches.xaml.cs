@@ -23,36 +23,24 @@ namespace AgendaSQL_App.View
     {
         Todolist preset_todolist;
         DAO_Taches dao_taches;
+        DAO_Todolist dao_todolist;
         public Window_Taches(Todolist todolist)
         {
             InitializeComponent();
             preset_todolist = todolist;
             dao_taches = new DAO_Taches();
+            dao_todolist = new DAO_Todolist();
+
             LoadTaches();
         }
 
         private void LoadTaches()
         {
-            TodolistName_TB.Text = preset_todolist.Name+ "To do list";
+            TodolistName_TB.Text = preset_todolist.Name;
             DG_Taches.ItemsSource = dao_taches.GetTachesByTodolistId(preset_todolist.Id);
             int count = DG_Taches.Items.Count;
             TachesAmount_TB.Text = count.ToString() + " Total Taches";
         }
-
-        private void SaveTaches_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to save the changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                // save changes
-                foreach (Tach tach in DG_Taches.Items)
-                {
-                    dao_taches.UpdateTache(tach);
-                }
-                MessageBox.Show("Changes saved successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-
         private void EditTache_Click(object sender, RoutedEventArgs e)
         {
 
@@ -74,16 +62,62 @@ namespace AgendaSQL_App.View
 
         private void AddTache_Click(object sender, RoutedEventArgs e)
         {
-            // Save the tache with the todolist id
-            Tach tache = new Tach()
+            Tach tache = DG_Taches.SelectedItem as Tach;    
+
+            if (tache == null)
             {
-                TodolistId = preset_todolist.Id,
-                Nom = TacheName_TB.Text,
-                Temps = Date.SelectedDate
-            };
-            dao_taches.AddTacheToTodolist(tache);
+                tache = new Tach()
+                {
+                    TodolistId = preset_todolist.Id,
+                    Nom = TacheName_TB.Text,
+                    Temps = Date.SelectedDate
+                };
+                dao_taches.AddTacheToTodolist(tache);
+            }
+            else
+            {
+                tache.Nom = TacheName_TB.Text;
+                tache.Temps = Date.SelectedDate;
+
+                dao_taches.UpdateTache(tache);
+            }
+
             LoadTaches();
 
+        }
+
+        private void SaveTaches_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to save the changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
+            if (result == MessageBoxResult.Yes)
+            {
+                // save changes
+                foreach (Tach tach in DG_Taches.Items)
+                {
+                    dao_taches.UpdateTache(tach);
+                }
+                // Save the name of the todolist
+                preset_todolist.Name = TodolistName_TB.Text;
+                dao_todolist.UpdateTodolist(preset_todolist);
+                
+                MessageBox.Show("Changes saved successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void DG_Taches_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DG_Taches.SelectedItem != null)
+            {
+                Tach tache = DG_Taches.SelectedItem as Tach;
+                TacheName_TB.Text = tache.Nom;
+                Date.SelectedDate = tache.Temps;
+            }
+            else
+            {
+                TacheName_TB.Text = "";
+                Date.SelectedDate = null;
+            }
         }
     }
 }
