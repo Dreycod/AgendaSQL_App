@@ -60,14 +60,10 @@
 
              <!--************************************ Content Grid ************************************************--> 
             <Grid Grid.Row="3" >
-                <DataGrid Name="DG_Todolists" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}">
+                <DataGrid Name="DG_Todolists" SelectionChanged="DG_Todolists_SelectionChanged" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}">
                     <DataGrid.Columns>
-
                         <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}"/>
-
                         <DataGridTextColumn Header="Nom" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
-
-
                         <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" IsReadOnly="True" Width="*"/>
                         <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
@@ -84,7 +80,6 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-
                 </DataGrid>
             </Grid>
              <!--****************************** ADD TO DO LIST ***********************************-->

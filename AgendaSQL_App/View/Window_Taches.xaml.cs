@@ -41,6 +41,7 @@ namespace AgendaSQL_App.View
             int count = DG_Taches.Items.Count;
             TachesAmount_TB.Text = count.ToString() + " Total Taches";
         }
+
         private void EditTache_Click(object sender, RoutedEventArgs e)
         {
 
@@ -119,5 +120,6 @@ namespace AgendaSQL_App.View
                 Date.SelectedDate = null;
             }
         }
+
     }
 }
