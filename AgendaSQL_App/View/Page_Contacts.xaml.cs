@@ -30,7 +30,6 @@ namespace AgendaSQL_App.View
             dao_contact = new DAO_Contact();
             UpdateContacts();
         }
-
         private void UpdateContacts()
         {
             DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
@@ -45,7 +44,6 @@ namespace AgendaSQL_App.View
             int count = DG_Contacts.Items.Count;
             TotalContactsTB.Text = count.ToString()+" Total Contacts";
         }
-
         private void ToggleAddMember_Click(object sender, RoutedEventArgs e)
         {
             Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, null);
@@ -78,16 +76,28 @@ namespace AgendaSQL_App.View
         }
         private void DeleteContact_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this contact?", "Delete Contact", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
             Contact contact = (Contact)DG_Contacts.SelectedItem;
             dao_contact.DeleteContact(contact.Id);
             UpdateContacts();
         }
-
         private void EditContact_Click(object sender, RoutedEventArgs e)
         {
             Contact contact = (Contact)DG_Contacts.SelectedItem;
             Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, contact);
             window_ContactInfo.Show();
+        }
+        private void OpenReseau_Click(object sender, RoutedEventArgs e)
+        {
+            Contact contact = (Contact)DG_Contacts.SelectedItem;
+            Window_ReseauSocial window_Reseau = new Window_ReseauSocial(contact);
+            window_Reseau.Show();
         }
 
         private void textBoxFilter_TextChanged(object sender, TextChangedEventArgs e)

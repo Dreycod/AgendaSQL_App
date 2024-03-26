@@ -11,6 +11,9 @@ namespace AgendaSQL_App.Service.DAO
 {
     public class DAO_Contact
     {
+        public DAO_Contact()
+        {
+        }
         public IEnumerable<Contact> GetAllContacts()
         {
             using (var db = new AgendaDbContext())
@@ -18,7 +21,6 @@ namespace AgendaSQL_App.Service.DAO
                 return db.Contacts.ToList();
             }
         }
-
         public void AddContact(Contact contact)
         {
             using (var db = new AgendaDbContext())
@@ -53,7 +55,6 @@ namespace AgendaSQL_App.Service.DAO
                     db.Contacts.Remove(contact);
                     db.SaveChanges();
                 }
-               
             }
         }
         public void ResetContacts()
@@ -67,8 +68,6 @@ namespace AgendaSQL_App.Service.DAO
                 db.SaveChanges();
             }
         }
-
-
         public IEnumerable<Contact> GetContactsStartsByName(string name)
         {
             using (var db = new AgendaDbContext())
@@ -77,7 +76,6 @@ namespace AgendaSQL_App.Service.DAO
                 return ListContact;
             }
         }
-
         public IEnumerable<Contact> GetContactsStartsByPrenom(string Prenom)
         {
             using (var db = new AgendaDbContext())
@@ -86,7 +84,6 @@ namespace AgendaSQL_App.Service.DAO
                 return ListContact;
             }
         }
-
         public IEnumerable<Contact> GetContactsByName(string name)
         {
             using (var db = new AgendaDbContext())
@@ -95,8 +92,6 @@ namespace AgendaSQL_App.Service.DAO
                 return ListContact;
             }
         }
-
-        // Get contact by relationship
         public IEnumerable<Contact> GetContactsByRelationship(string relationship)
         {
             using (var db = new AgendaDbContext())
@@ -112,5 +107,6 @@ namespace AgendaSQL_App.Service.DAO
                 return db.Database.CanConnect();
             }
         }
+        
     }
 }

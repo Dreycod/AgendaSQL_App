@@ -25,11 +25,13 @@ namespace AgendaSQL_App.View
         DAO_Contact dao_contact;
         Page_Contacts page_dashboard;
         Contact presetContact;
+
         public Window_ContactInfo(Page_Contacts p_dash, Contact contact)
         {
             InitializeComponent();
             dao_contact = new DAO_Contact();
             page_dashboard = p_dash;
+
             if (contact != null)
             {
                presetContact = contact;
@@ -39,7 +41,6 @@ namespace AgendaSQL_App.View
 
         private void EditMember()
         {
-
             NomTB.Text = presetContact.Name;
             PrenomTB.Text = presetContact.Prenom;
             AgeTB.Text = presetContact.Age.ToString();
@@ -71,7 +72,7 @@ namespace AgendaSQL_App.View
 
 
             // Verify that all required fields are filled
-            if (name == "" || prenom == "" || str_age == "" || email == "" || phone == "" || address == "" || postalCode == "" || city == "" || dateOfBirth == null || company == "")
+            if (name == "" || prenom == "" || str_age == "" || phone == "" || dateOfBirth == null )
             {
                 MessageBox.Show("Please fill all required fields");
                 return;
@@ -82,6 +83,7 @@ namespace AgendaSQL_App.View
                 return;
             }
 
+
             // Convert age to int
             try
             {
@@ -90,6 +92,13 @@ namespace AgendaSQL_App.View
             catch (Exception)
             {
                 MessageBox.Show("Please enter a valid age");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to save these settings?", "Save Contact", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.No)
+            {
                 return;
             }
 

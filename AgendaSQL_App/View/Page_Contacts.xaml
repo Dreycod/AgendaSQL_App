@@ -14,7 +14,6 @@
     </UserControl.Resources>
     <!-- test-->
     <Border BorderThickness="10" Background="#ededed" CornerRadius="30">
-
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="56*"/>
@@ -26,7 +25,7 @@
             <!-- ************************************ Top Grid ************************************************ -->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3*"/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -83,6 +82,19 @@
                         <DataGridTextColumn Header="Addresse" Binding="{Binding Addresse}" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Code Postal" Binding="{Binding Codepostal}" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Entreprise" Binding="{Binding Entreprise}" IsReadOnly="True" Width="*"/>
+
+                        <DataGridTemplateColumn Header="Réseaux" IsReadOnly="True" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource gridEditButton}" Click="OpenReseau_Click">
+                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
                         <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -101,7 +113,7 @@
 
                 </DataGrid>
             </Grid>
-
         </Grid>
     </Border>
+    
 </UserControl>

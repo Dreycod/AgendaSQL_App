@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:local="clr-namespace:AgendaMVC_WPF"
+             xmlns:local="clr-namespace:AgendaSQL_App"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <SolidColorBrush x:Key="Main_Background" Color="#A5A5A5"/>
@@ -156,6 +156,7 @@
 
     <Style x:Key="filterTextBox" TargetType="TextBox" BasedOn="{StaticResource searchTextbox}">
         <Setter Property="Padding" Value="10 7" />
+        <Setter Property="Foreground" Value="#4d4e4f"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
