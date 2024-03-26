@@ -13,6 +13,7 @@ namespace AgendaSQL_App.Service.DAO
     {
         public DAO_Contact()
         {
+
         }
         public IEnumerable<Contact> GetAllContacts()
         {
@@ -107,6 +108,5 @@ namespace AgendaSQL_App.Service.DAO
                 return db.Database.CanConnect();
             }
         }
-        
     }
 }

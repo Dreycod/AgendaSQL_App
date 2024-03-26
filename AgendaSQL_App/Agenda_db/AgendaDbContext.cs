@@ -21,25 +21,27 @@ public partial class AgendaDbContext : DbContext
 
     public virtual DbSet<ReseauxProfile> ReseauxProfiles { get; set; }
 
-    public virtual DbSet<Todolist> Todolists { get; set; }
+    public virtual DbSet<Tach> Taches { get; set; }
 
-    public virtual DbSet<Tâch> Tâches { get; set; }
+    public virtual DbSet<Todolist> Todolists { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;database=agenda_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.21-mysql"));
+        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;database=agenda_db", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.2.0-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
-            .UseCollation("utf8mb4_0900_ai_ci")
+            .UseCollation("utf8mb4_general_ci")
             .HasCharSet("utf8mb4");
 
         modelBuilder.Entity<Contact>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("contact");
+            entity
+                .ToTable("contact")
+                .UseCollation("utf8mb4_0900_ai_ci");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Addresse)
@@ -79,7 +81,9 @@ public partial class AgendaDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("reseaux_media");
+            entity
+                .ToTable("reseaux_media")
+                .UseCollation("utf8mb4_0900_ai_ci");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Logourl)
@@ -96,7 +100,9 @@ public partial class AgendaDbContext : DbContext
                 .HasName("PRIMARY")
                 .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0 });
 
-            entity.ToTable("reseaux_profile");
+            entity
+                .ToTable("reseaux_profile")
+                .UseCollation("utf8mb4_0900_ai_ci");
 
             entity.HasIndex(e => e.ContactId, "fk_reseaux_profile_contact_idx");
 
@@ -128,35 +134,22 @@ public partial class AgendaDbContext : DbContext
                 .HasConstraintName("fk_reseaux_profile_reseaux_media1");
         });
 
-        modelBuilder.Entity<Todolist>(entity =>
+        modelBuilder.Entity<Tach>(entity =>
         {
-            entity.HasKey(e => e.IdTodolist).HasName("PRIMARY");
-
-            entity.ToTable("todolist");
-
-            entity.Property(e => e.IdTodolist).HasColumnName("idTodolist");
-            entity.Property(e => e.Genre)
-                .HasColumnType("enum('Friends','Voyage','Quotidien')")
-                .HasColumnName("genre");
-            entity.Property(e => e.Name)
-                .HasMaxLength(45)
-                .HasColumnName("name");
-        });
-
-        modelBuilder.Entity<Tâch>(entity =>
-        {
-            entity.HasKey(e => new { e.Idtâches, e.TodolistIdTodolist })
+            entity.HasKey(e => new { e.Idtaches, e.TodolistId })
                 .HasName("PRIMARY")
                 .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
 
-            entity.ToTable("tâches");
+            entity
+                .ToTable("taches")
+                .UseCollation("utf8mb4_0900_ai_ci");
 
-            entity.HasIndex(e => e.TodolistIdTodolist, "fk_tâches_Todolist1_idx");
+            entity.HasIndex(e => e.TodolistId, "fk_tâches_todolist1_idx");
 
-            entity.Property(e => e.Idtâches)
+            entity.Property(e => e.Idtaches)
                 .ValueGeneratedOnAdd()
-                .HasColumnName("idtâches");
-            entity.Property(e => e.TodolistIdTodolist).HasColumnName("Todolist_idTodolist");
+                .HasColumnName("idtaches");
+            entity.Property(e => e.TodolistId).HasColumnName("todolist_id");
             entity.Property(e => e.Fait).HasColumnName("fait");
             entity.Property(e => e.Nom)
                 .HasMaxLength(45)
@@ -165,10 +158,27 @@ public partial class AgendaDbContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("temps");
 
-            entity.HasOne(d => d.TodolistIdTodolistNavigation).WithMany(p => p.Tâches)
-                .HasForeignKey(d => d.TodolistIdTodolist)
+            entity.HasOne(d => d.Todolist).WithMany(p => p.Taches)
+                .HasForeignKey(d => d.TodolistId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_tâches_Todolist1");
+                .HasConstraintName("fk_tâches_todolist1");
+        });
+
+        modelBuilder.Entity<Todolist>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity
+                .ToTable("todolist")
+                .UseCollation("utf8mb4_0900_ai_ci");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Genre)
+                .HasColumnType("enum('Famille','Amis','Travail')")
+                .HasColumnName("genre");
+            entity.Property(e => e.Name)
+                .HasMaxLength(45)
+                .HasColumnName("name");
         });
 
         OnModelCreatingPartial(modelBuilder);
