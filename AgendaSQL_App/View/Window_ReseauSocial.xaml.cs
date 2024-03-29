@@ -30,8 +30,18 @@ namespace AgendaSQL_App.View
         {
             InitializeComponent();
             dao_contact = new DAO_Contact();
+            dao_reseaux = new DAO_Reseaux();    
             PreContact = contact;
-
+            LoadInfo();
+        }
+        //load contact info
+        private void LoadInfo()
+        {
+            if (PreContact != null)
+            {
+                IEnumerable<ReseauxProfile> liste_reseaux = dao_reseaux.GetReseauxProfileByContactId(PreContact.Id);
+                DG_SocialMedia.ItemsSource = liste_reseaux;
+            }
         }
         private void SaveNewMember_Click(object sender, RoutedEventArgs e)
         {

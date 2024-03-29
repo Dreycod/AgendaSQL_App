@@ -105,21 +105,21 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource menuButton}">
+                    <Button Name="Calendar_BTN" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Calendar" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                         </StackPanel>
                     </Button>
 
-                    <Button Click="ContactsBTN_Click" Style="{StaticResource menuButton}">
+                    <Button Name="Contacts_BTN" Click="ContactsBTN_Click" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Contacts" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                         </StackPanel>
                     </Button>
 
-                    <Button Click="Todolist_BTNClick" Style="{StaticResource menuButton}">
+                    <Button Name="Todolist_BTN" Click="Todolist_BTNClick" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Tâches" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>

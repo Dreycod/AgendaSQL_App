@@ -13,7 +13,23 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
     <!-- test-->
-    <Border BorderThickness="10" Background="#ededed" CornerRadius="30">
+    <Border BorderThickness="2" CornerRadius="30">
+        
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#333138" Offset="0"/>
+                <GradientStop Color="#515052" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF312E" Offset="0"/>
+                <GradientStop Color="#333138" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="56*"/>
@@ -30,25 +46,25 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Contacts" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Contacts" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <Button Content="+ Member" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"  Style="{StaticResource addButton}" Click="ToggleAddMember_Click"/>
-                <Button Content="Reset" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Style="{StaticResource addButton}" Click="ResetMembers_Click"/>
+                <Button Content="+ Member" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"  Style="{StaticResource gridEditButton}" Click="ToggleAddMember_Click"/>
+                <Button Content="Reset" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="ResetMembers_Click"/>
             </Grid>
             <!-- ************************************ Button Grid ************************************************ -->
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="All" Margin="0" Grid.Column="0" Style="{StaticResource tabButton}" Click="Relationship_Click"/>
-                    <Button Content="Famille" Margin="0" Grid.Column="1" Style="{StaticResource tabButton}" Click="Relationship_Click" />
-                    <Button Content="Amis"  Margin="0" Grid.Column="2" Style="{StaticResource tabButton}" Click="Relationship_Click"/>
-                    <Button Content="Travail" Margin="0" Grid.Column="3" Style="{StaticResource tabButton}" Click="Relationship_Click"/>
+                    <Button Content="All" Margin="5,0,5,0" Grid.Column="0" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
+                    <Button Content="Famille" Margin="5,0,5,0" Grid.Column="1" Style="{StaticResource gridEditButton}" Click="Relationship_Click" />
+                    <Button Content="Amis"  Margin="5,0,5,0" Grid.Column="2" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
+                    <Button Content="Travail" Margin="5,0,5,0" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
                 </StackPanel>
             </Grid>
 
             <!-- ************************************ Filter Grid ************************************************ -->
             <Grid Grid.Row="2" >
-                <TextBlock Name="TotalContactsTB" Text="N total contacts" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBlock Text="Filtrer Par :" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Name="TotalContactsTB" Text="N total contacts" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Filtrer Par :" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
                 <Grid Width="200" Height="39" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2">
                     <TextBlock Margin="0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"

@@ -6,7 +6,6 @@
     <Application.Resources>
         <ResourceDictionary Source="/Ressources/styles.xaml">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
 
                 <!-- Add more MahApps.Metro resource dictionaries if needed -->
             </ResourceDictionary.MergedDictionaries>

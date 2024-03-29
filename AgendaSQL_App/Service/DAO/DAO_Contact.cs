@@ -53,6 +53,11 @@ namespace AgendaSQL_App.Service.DAO
                 var contact = db.Contacts.SingleOrDefault(c => c.Id == id);
                 if (contact != null)
                 {
+                    var reseauxProfiles = db.ReseauxProfiles.Where(rp => rp.ContactId == id).ToList();
+                    foreach (var reseauxProfile in reseauxProfiles)
+                    {
+                        db.ReseauxProfiles.Remove(reseauxProfile);
+                    }
                     db.Contacts.Remove(contact);
                     db.SaveChanges();
                 }

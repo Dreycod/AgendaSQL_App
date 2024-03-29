@@ -28,7 +28,7 @@
 
         <TextBlock Name="Title_TB" Grid.Row="0" Grid.ColumnSpan="2" Text="N's Social Profiles" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"/>
 
-        <DataGrid Name="DG_Social" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="4">
+        <DataGrid Name="DG_SocialMedia" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="4">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Nom" Binding="{Binding nom}"/>

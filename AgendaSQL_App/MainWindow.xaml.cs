@@ -30,7 +30,9 @@ namespace AgendaSQL_App
             DAO_Contact = new DAO_Contact();
             if (DAO_Contact.DatabaseExists() == false)
             {
-                Accueil_BTN.IsEnabled = false;
+                Contacts_BTN.IsEnabled = false;
+                Todolist_BTN.IsEnabled = false;
+                MessageBox.Show("Database not found, please check your connection string! Contacts & Todolist Buttons Disabled.");
             }
 
         }

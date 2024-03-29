@@ -6,77 +6,95 @@
         xmlns:local="clr-namespace:AgendaSQL_App.View"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
+        Background="Transparent"
         ResizeMode="NoResize"
         Title="Window_ContactInfo" Height="550" Width="800">
+    
+    <Border BorderThickness="2">
 
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.7*"/>
-        </Grid.RowDefinitions>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#333138" Offset="0"/>
+                <GradientStop Color="#515052" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="7*"/>
-        </Grid.ColumnDefinitions>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF312E" Offset="0"/>
+                <GradientStop Color="#333138" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
 
-        <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" Text="To do list:" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"/>
-        <TextBox Name="TodolistName_TB" Grid.Column="1" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2" Text="Insert to do list name" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Height="Auto" />
-        <TextBlock Name="TachesAmount_TB" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" Text="N Total Taches" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"/>
-
-        <DataGrid Name="DG_Taches" Grid.Row="2" Grid.ColumnSpan="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" SelectionChanged="DG_Taches_SelectionChanged">
-            <DataGrid.Columns>
-
-                <DataGridCheckBoxColumn Header="Fait" Binding="{Binding Fait}" Width="*"/>
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Temps" Binding="{Binding Temps}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Click="DeleteTache_Click">
-                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-
-        </DataGrid>
-
-        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.7*"/>
+            </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Save/Add" Grid.Column="0" HorizontalAlignment="Center"  Style="{StaticResource addButton}" Click="AddTache_Click"/>
 
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Tâche Name" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" Foreground="#121518"/>
-                <TextBox Margin="0" Height="30" Grid.Row="1" Style="{StaticResource filterTextBox}" Name="TacheName_TB"/>
+            <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" VerticalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" Text="To do list:" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"/>
+            <TextBox Name="TodolistName_TB" Grid.Column="1" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2" Text="Insert to do list name" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Height="Auto" />
+            <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Name="TachesAmount_TB" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" Text="N Total Taches" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"/>
+
+            <DataGrid Name="DG_Taches" Grid.Row="2" Grid.ColumnSpan="2" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" SelectionChanged="DG_Taches_SelectionChanged">
+                <DataGrid.Columns>
+
+                    <DataGridCheckBoxColumn Header="Fait" Binding="{Binding Fait}" Width="*"/>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Temps" Binding="{Binding Temps}" IsReadOnly="True" Width="*"/>
+                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Click="DeleteTache_Click">
+                                        <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <Grid Grid.Row="3" Grid.ColumnSpan="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/> 
+                </Grid.ColumnDefinitions>
+                <Button Content="Save/Add" Grid.Column="0" HorizontalAlignment="Center"  Style="{StaticResource gridEditButton}" Click="AddTache_Click"/>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Tâche Name" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                    <TextBox Margin="0" Height="30" Grid.Row="1" Style="{StaticResource filterTextBox}" Name="TacheName_TB"/>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Temps" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                    <DatePicker Foreground="{StaticResource CreamBrush}" Grid.Row="12" x:Name="Date" Margin="0,0,0,5" />
+                </Grid>
+
             </Grid>
 
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Temps" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" Foreground="#121518"/>
-                <DatePicker Grid.Row="12" x:Name="Date" Margin="0,0,0,5" />
-            </Grid>
-
+            <Button Grid.Row="4" Margin="0,0,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="30" Width="125" FontSize="15" Content="SAVE" HorizontalAlignment="Center" Click="SaveTaches_Click" Style="{StaticResource gridEditButton}"/>
         </Grid>
-
-        <Button Grid.Row="4" Margin="0,0,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="30" Width="125" FontSize="15" Content="SAVE" HorizontalAlignment="Center" Click="SaveTaches_Click" Style="{StaticResource gridEditButton}"/>
-    </Grid>
+    </Border>
 </Window>
