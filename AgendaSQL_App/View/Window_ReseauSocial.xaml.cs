@@ -35,6 +35,7 @@ namespace AgendaSQL_App.View
 
         private void LoadInfo()
         {
+
             if (PreContact != null)
             {
                 IEnumerable<ReseauxProfile> liste_reseaux = dao_reseaux.GetReseauxProfileByContactId(PreContact.Id);
@@ -52,6 +53,8 @@ namespace AgendaSQL_App.View
                 cbi.Tag = item.Id;
                 Reseaux_CB.Items.Add(cbi);
             }
+
+
         }
 
         private void SaveNewMember_Click(object sender, RoutedEventArgs e)
@@ -63,9 +66,6 @@ namespace AgendaSQL_App.View
         {
 
             ReseauxProfile reseaux = new ReseauxProfile();
-            // Check if selected reseaux is not null
-
-           
 
             ComboBoxItem cbi = (ComboBoxItem)Reseaux_CB.SelectedItem;
              
@@ -88,6 +88,7 @@ namespace AgendaSQL_App.View
             }
 
             LoadInfo();
+
         }
 
         private void DeleteTodolist_Click(object sender, RoutedEventArgs e)
@@ -104,11 +105,13 @@ namespace AgendaSQL_App.View
 
                 LoadInfo();
             }
+
         }
 
         private void DG_SocialMedia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // check if selected item is not null
+
             if (DG_SocialMedia.SelectedItem == null)
             {
                 SelectedReseaux = null;
@@ -123,7 +126,6 @@ namespace AgendaSQL_App.View
 
             Nom_TB.Text = SelectedReseaux.Nom;
             Url_TB.Text = SelectedReseaux.Url;
-            
             Followers_TB.Text = "";
 
             if (SelectedReseaux.Followers != null)
@@ -131,7 +133,6 @@ namespace AgendaSQL_App.View
                 Followers_TB.Text = SelectedReseaux.Followers.ToString();
             }
 
-            
             foreach (ComboBoxItem item in Reseaux_CB.Items)
             {
                 if (int.Parse(item.Tag.ToString()) == SelectedReseaux.ReseauxMediaId)
@@ -140,6 +141,7 @@ namespace AgendaSQL_App.View
                     break;
                 }
             }
+
         }
     }
 }
