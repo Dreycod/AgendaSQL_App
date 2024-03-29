@@ -11,7 +11,7 @@ namespace AgendaSQL_App.Service.DAO
         // get all todolists
         public IEnumerable<Todolist> GetAllTodolists()
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Todolists.ToList();
             }
@@ -19,7 +19,7 @@ namespace AgendaSQL_App.Service.DAO
         // add a todolist
         public void AddTodolist(Todolist todolist)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.Todolists.Add(todolist);
                 db.SaveChanges();
@@ -28,7 +28,7 @@ namespace AgendaSQL_App.Service.DAO
         // get a todolist by id
         public Todolist GetTodolistById(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Todolists.Find(id);
             }
@@ -36,7 +36,7 @@ namespace AgendaSQL_App.Service.DAO
         // update a todolist
         public void UpdateTodolist(Todolist todolist)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.Todolists.Update(todolist);
                 db.SaveChanges();
@@ -45,7 +45,7 @@ namespace AgendaSQL_App.Service.DAO
         // delete a todolist
         public void DeleteTodolist(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var todolist = db.Todolists.SingleOrDefault(c => c.Id == id);
                 if (todolist != null)
@@ -58,7 +58,7 @@ namespace AgendaSQL_App.Service.DAO
         // reset todolists
         public void ResetTodolists()
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.Todolists.RemoveRange(db.Todolists);
                 db.SaveChanges();
@@ -67,7 +67,7 @@ namespace AgendaSQL_App.Service.DAO
         // get todolist by genre
         public IEnumerable<Todolist> GetTodolistByGenre(string genre)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Todolists.Where(t => t.Genre == genre).ToList();
             }
@@ -75,7 +75,7 @@ namespace AgendaSQL_App.Service.DAO
         // Get todoliststartsby name
         public IEnumerable<Todolist> GetTodolistStartsByName(string name)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Todolists.Where(t => t.Name.StartsWith(name)).ToList();
             }

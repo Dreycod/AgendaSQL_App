@@ -15,7 +15,7 @@ namespace AgendaSQL_App.Service.DAO
         
         public IEnumerable<ReseauxProfile> GetReseauxProfileByContactId(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var ListReseauxProfile = db.ReseauxProfiles.Where(c => c.ContactId == id).ToList();
                 return ListReseauxProfile;
@@ -24,7 +24,7 @@ namespace AgendaSQL_App.Service.DAO
         // Get reseauxmedium information by reseauxprofile id
         public ReseauxMedium GetReseauxMediumByReseauxProfileId(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var reseauxProfile = db.ReseauxProfiles.Find(id);
                 var reseauxMedium = db.ReseauxMedia.Find(reseauxProfile.ReseauxMediaId);
@@ -33,7 +33,7 @@ namespace AgendaSQL_App.Service.DAO
         }
         public void AddReseauxProfile(ReseauxProfile reseauxProfile)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.ReseauxProfiles.Add(reseauxProfile);
                 db.SaveChanges();

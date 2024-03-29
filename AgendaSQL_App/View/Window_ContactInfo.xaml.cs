@@ -103,7 +103,7 @@ namespace AgendaSQL_App.View
             }
 
             relationship = RelationshipCB.SelectedItem.ToString().Substring(38);
-
+            MessageBox.Show(relationship);  
             Contact contact = new Contact
             {
                 Name = name,

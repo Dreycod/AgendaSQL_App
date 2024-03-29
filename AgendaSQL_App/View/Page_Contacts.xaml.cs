@@ -24,6 +24,8 @@ namespace AgendaSQL_App.View
     public partial class Page_Contacts : UserControl
     {
         DAO_Contact dao_contact;
+        string current_Genre = "All";
+
         public Page_Contacts()
         {
             InitializeComponent();
@@ -32,17 +34,36 @@ namespace AgendaSQL_App.View
         }
         private void UpdateContacts()
         {
-            DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
+            string filter = textBoxFilter.Text;
             ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
 
             foreach (Contact contact in dao_contact.GetAllContacts())
             {
                 contacts.Add(contact);
             }
-            DG_Contacts.ItemsSource = contacts;
+            IEnumerable<Contact> Liste = contacts;
+
+            if (Liste != null)
+            {
+                if (current_Genre != "All")
+                {
+                    Liste = dao_contact.GetContactsByRelationship(current_Genre);
+
+                    if (filter != "")
+                    {
+                        Liste = Liste.Where(todolist => todolist.Name.Contains(filter));
+                    }
+                }
+                else if (filter != "")
+                {
+                    Liste = dao_contact.GetContactsStartsByPrenom(filter);
+                }
+            }
+
+            DG_Contacts.ItemsSource = Liste;
 
             int count = DG_Contacts.Items.Count;
-            TotalContactsTB.Text = count.ToString()+" Total Contacts";
+            TotalContactsTB.Text = count.ToString() + " Total Contacts";
         }
         private void ToggleAddMember_Click(object sender, RoutedEventArgs e)
         {
@@ -65,14 +86,8 @@ namespace AgendaSQL_App.View
         private void Relationship_Click(object sender, RoutedEventArgs e)
         {
             string Content = (sender as Button).Content.ToString();
-            if (Content == "All")
-            {
-                DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
-            }
-            else
-            {
-                DG_Contacts.ItemsSource = dao_contact.GetContactsByRelationship(Content);
-            }
+            current_Genre = Content;
+            UpdateContacts();
         }
         private void DeleteContact_Click(object sender, RoutedEventArgs e)
         {
@@ -90,29 +105,46 @@ namespace AgendaSQL_App.View
         private void EditContact_Click(object sender, RoutedEventArgs e)
         {
             Contact contact = (Contact)DG_Contacts.SelectedItem;
-            Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, contact);
-            window_ContactInfo.Show();
+            // check if a window is already open
+            bool IsOpen = false;
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(Window_ContactInfo))
+                {
+                    MessageBox.Show("Please close the current window before opening a new one");
+                    IsOpen = true;
+                }
+            }
+            if (!IsOpen)
+            {
+                Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, contact);
+                window_ContactInfo.Show();
+            }
         }
         private void OpenReseau_Click(object sender, RoutedEventArgs e)
         {
             Contact contact = (Contact)DG_Contacts.SelectedItem;
-            Window_ReseauSocial window_Reseau = new Window_ReseauSocial(contact);
-            window_Reseau.Show();
+            bool IsOpen = false;
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(Window_ReseauSocial))
+                {
+                    MessageBox.Show("Please close the current window before opening a new one");
+                    IsOpen = true;
+                }
+            }
+            if (!IsOpen)
+            {
+                Window_ReseauSocial window_Reseau = new Window_ReseauSocial(contact);
+                window_Reseau.Show();
+            }
         }
 
         private void textBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string filter = textBoxFilter.Text;
-
-            if (filter == "")
-            {
-                DG_Contacts.ItemsSource = dao_contact.GetAllContacts();
-            }
-            else
-            {
-                DG_Contacts.ItemsSource = dao_contact.GetContactsStartsByPrenom(filter);
-            }
-            
+            UpdateContacts();
         }
     }
 }

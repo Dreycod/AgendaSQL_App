@@ -130,8 +130,22 @@ namespace AgendaSQL_App.View
         private void OpenTaches_Click(object sender, RoutedEventArgs e)
         {
             Todolist todolist = (Todolist)DG_Todolists.SelectedItem;
-            Window_Taches window_Taches = new Window_Taches(todolist);
-            window_Taches.Show();
+            bool IsOpen = false;
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(Window_Taches))
+                {
+                    MessageBox.Show("Please close the current window before opening a new one");
+                    IsOpen = true;
+                }
+            }
+            if (!IsOpen)
+            {
+
+                Window_Taches window_Taches = new Window_Taches(todolist);
+                window_Taches.Show();
+            }
         }
 
         private void DG_Todolists_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -17,14 +17,14 @@ namespace AgendaSQL_App.Service.DAO
         }
         public IEnumerable<Contact> GetAllContacts()
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Contacts.ToList();
             }
         }
         public void AddContact(Contact contact)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.Contacts.Add(contact);
                 db.SaveChanges();
@@ -33,14 +33,14 @@ namespace AgendaSQL_App.Service.DAO
 
         public Contact GetContactById(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Contacts.Find(id);
             }
         }
         public void UpdateContact(Contact contact)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.Contacts.Update(contact);
                 db.SaveChanges();
@@ -48,7 +48,7 @@ namespace AgendaSQL_App.Service.DAO
         }
         public void DeleteContact(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var contact = db.Contacts.SingleOrDefault(c => c.Id == id);
                 if (contact != null)
@@ -65,7 +65,7 @@ namespace AgendaSQL_App.Service.DAO
         }
         public void ResetContacts()
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 // Remove all contacts
                 db.Contacts.RemoveRange(db.Contacts);
@@ -76,7 +76,7 @@ namespace AgendaSQL_App.Service.DAO
         }
         public IEnumerable<Contact> GetContactsStartsByName(string name)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var ListContact = db.Contacts.Where(c => c.Name.StartsWith(name)).ToList();
                 return ListContact;
@@ -84,7 +84,7 @@ namespace AgendaSQL_App.Service.DAO
         }
         public IEnumerable<Contact> GetContactsStartsByPrenom(string Prenom)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var ListContact = db.Contacts.Where(c => c.Prenom.StartsWith(Prenom)).ToList();
                 return ListContact;
@@ -92,7 +92,7 @@ namespace AgendaSQL_App.Service.DAO
         }
         public IEnumerable<Contact> GetContactsByName(string name)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var ListContact = db.Contacts.Where(c => c.Name == name).ToList();
                 return ListContact;
@@ -100,7 +100,7 @@ namespace AgendaSQL_App.Service.DAO
         }
         public IEnumerable<Contact> GetContactsByRelationship(string relationship)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var ListContact = db.Contacts.Where(c => c.Relationship == relationship).ToList();
                 return ListContact;
@@ -108,7 +108,7 @@ namespace AgendaSQL_App.Service.DAO
         }
         public bool DatabaseExists()
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Database.CanConnect();
             }

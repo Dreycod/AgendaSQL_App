@@ -15,7 +15,7 @@ namespace AgendaSQL_App.Service.DAO
         // get Taches by todolist id
         public IEnumerable<Tach> GetTachesByTodolistId(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Taches.Where(t => t.TodolistId == id).ToList();
             }
@@ -23,7 +23,7 @@ namespace AgendaSQL_App.Service.DAO
         // add tache to todolist
         public void AddTacheToTodolist(Tach tache)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.Taches.Add(tache);
                 db.SaveChanges();
@@ -32,7 +32,7 @@ namespace AgendaSQL_App.Service.DAO
         // get tache by id
         public Tach GetTacheById(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 return db.Taches.Find(id);
             }
@@ -40,7 +40,7 @@ namespace AgendaSQL_App.Service.DAO
         // update tache
         public void UpdateTache(Tach tache)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.Taches.Update(tache);
                 db.SaveChanges();
@@ -49,7 +49,7 @@ namespace AgendaSQL_App.Service.DAO
         // delete tache
         public void DeleteTache(int id)
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 var tache = db.Taches.SingleOrDefault(c => c.Idtaches == id);
                 if (tache != null)
@@ -62,7 +62,7 @@ namespace AgendaSQL_App.Service.DAO
         // reset taches
         public void ResetTaches()
         {
-            using (var db = new AgendaDbContext())
+            using (var db = new AgendaSuzukidbContext())
             {
                 db.Taches.RemoveRange(db.Taches);
                 db.SaveChanges();
