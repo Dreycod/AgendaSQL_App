@@ -103,6 +103,7 @@ namespace AgendaSQL_App.View
                 dao_todolist.UpdateTodolist(preset_todolist);
 
                 MessageBox.Show("Changes saved successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
             }
         }
 

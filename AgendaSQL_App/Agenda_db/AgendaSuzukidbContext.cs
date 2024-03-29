@@ -27,7 +27,7 @@ public partial class AgendaSuzukidbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=andreraspberrypi.local;port=3306;user=admin;password=dj2005;database=agenda_suzukidb", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.21-mariadb"));
+        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;database=agenda_suzukidb", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.2.0-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,18 +41,14 @@ public partial class AgendaSuzukidbContext : DbContext
 
             entity
                 .ToTable("contact")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Addresse)
                 .HasMaxLength(45)
                 .HasColumnName("addresse");
-            entity.Property(e => e.Age)
-                .HasColumnType("int(11)")
-                .HasColumnName("age");
+            entity.Property(e => e.Age).HasColumnName("age");
             entity.Property(e => e.Codepostal)
                 .HasMaxLength(45)
                 .HasColumnName("codepostal");
@@ -88,12 +84,10 @@ public partial class AgendaSuzukidbContext : DbContext
 
             entity
                 .ToTable("reseaux_media")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Logourl)
                 .HasColumnType("text")
                 .HasColumnName("logourl");
@@ -110,8 +104,8 @@ public partial class AgendaSuzukidbContext : DbContext
 
             entity
                 .ToTable("reseaux_profile")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.HasIndex(e => e.ContactId, "fk_reseaux_profile_contact_idx");
 
@@ -119,14 +113,9 @@ public partial class AgendaSuzukidbContext : DbContext
 
             entity.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
-                .HasColumnType("int(11)")
                 .HasColumnName("id");
-            entity.Property(e => e.ContactId)
-                .HasColumnType("int(11)")
-                .HasColumnName("contact_id");
-            entity.Property(e => e.ReseauxMediaId)
-                .HasColumnType("int(11)")
-                .HasColumnName("reseaux_media_id");
+            entity.Property(e => e.ContactId).HasColumnName("contact_id");
+            entity.Property(e => e.ReseauxMediaId).HasColumnName("reseaux_media_id");
             entity.Property(e => e.Followers)
                 .HasMaxLength(45)
                 .HasColumnName("followers");
@@ -156,21 +145,16 @@ public partial class AgendaSuzukidbContext : DbContext
 
             entity
                 .ToTable("taches")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
             entity.HasIndex(e => e.TodolistId, "fk_tâches_todolist1_idx");
 
             entity.Property(e => e.Idtaches)
                 .ValueGeneratedOnAdd()
-                .HasColumnType("int(11)")
                 .HasColumnName("idtaches");
-            entity.Property(e => e.TodolistId)
-                .HasColumnType("int(11)")
-                .HasColumnName("todolist_id");
-            entity.Property(e => e.Fait)
-                .HasColumnType("tinyint(4)")
-                .HasColumnName("fait");
+            entity.Property(e => e.TodolistId).HasColumnName("todolist_id");
+            entity.Property(e => e.Fait).HasColumnName("fait");
             entity.Property(e => e.Nom)
                 .HasMaxLength(45)
                 .HasColumnName("nom");
@@ -190,12 +174,10 @@ public partial class AgendaSuzukidbContext : DbContext
 
             entity
                 .ToTable("todolist")
-                .HasCharSet("utf8")
-                .UseCollation("utf8_general_ci");
+                .HasCharSet("utf8mb3")
+                .UseCollation("utf8mb3_general_ci");
 
-            entity.Property(e => e.Id)
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Genre)
                 .HasColumnType("enum('Famille','Amis','Travail')")
                 .HasColumnName("genre");

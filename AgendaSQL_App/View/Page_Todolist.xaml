@@ -14,7 +14,6 @@
     </UserControl.Resources>
 
     <Border BorderThickness="2" CornerRadius="30">
-
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#333138" Offset="0"/>
@@ -50,7 +49,8 @@
 
                 <Button Content="Reset" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="ResetTodolists_Click"/>
             </Grid>
-             <!--************************************ Button Grid ************************************************--> 
+            
+             <!--************************************ Button Grid ************************************************-->
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Horizontal">
                     <Button Content="All" Margin="5,0,5,0" Grid.Column="0" Style="{StaticResource gridEditButton}" Click="Genre_Click"/>
@@ -59,8 +59,8 @@
                     <Button Content="Travail" Margin="5,0,5,0" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="Genre_Click"/>
                 </StackPanel>
             </Grid>
-
-             <!--************************************ Filter Grid ************************************************--> 
+            
+            <!--************************************ Filter Grid ************************************************--> 
             <Grid Grid.Row="2" >
                 <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Name="TotalTodolistsTB" Text="N total todolists" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Filtrer Par :" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -97,6 +97,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
+            
              <!--****************************** ADD TO DO LIST ***********************************-->
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>

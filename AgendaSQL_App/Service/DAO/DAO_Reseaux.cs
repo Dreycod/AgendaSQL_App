@@ -13,6 +13,16 @@ namespace AgendaSQL_App.Service.DAO
         { 
         }
         
+        // Get all reseaux medium 
+        public IEnumerable<ReseauxMedium> GetAllReseauxMedium()
+        {
+            using (var db = new AgendaSuzukidbContext())
+            {
+                var ListReseauxMedium = db.ReseauxMedia.ToList();
+                return ListReseauxMedium;
+            }
+        }
+
         public IEnumerable<ReseauxProfile> GetReseauxProfileByContactId(int id)
         {
             using (var db = new AgendaSuzukidbContext())
@@ -36,6 +46,15 @@ namespace AgendaSQL_App.Service.DAO
             using (var db = new AgendaSuzukidbContext())
             {
                 db.ReseauxProfiles.Add(reseauxProfile);
+                db.SaveChanges();
+            }
+        }
+
+        public void UpdateReseauxProfile(ReseauxProfile reseauxProfile)
+        {
+            using (var db = new AgendaSuzukidbContext())
+            {
+                db.ReseauxProfiles.Update(reseauxProfile);
                 db.SaveChanges();
             }
         }
