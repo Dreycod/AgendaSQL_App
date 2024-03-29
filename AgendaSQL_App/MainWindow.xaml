@@ -16,11 +16,18 @@
 
     <Window.Template>
         <ControlTemplate TargetType="{x:Type Window}">
-            <Border BorderThickness="3" CornerRadius="10" Background="White">
+            <Border BorderThickness="3" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#333138" Offset="0"/>
+                        <GradientStop Color="#515052" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                
                 <Border.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="LightGray" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#FF312E" Offset="0"/>
+                        <GradientStop Color="#333138" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.BorderBrush>
 
@@ -38,9 +45,9 @@
                                 <ColumnDefinition Width="4*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="AgendaSQL App" FontSize="20" FontWeight="Bold" Margin="10"/>
+                            <TextBlock Text="AgendaSQL App" FontSize="20" FontWeight="Bold" Margin="10" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
 
-                            <Border Grid.Column="1" Margin="20,8,20,8" Background="{StaticResource Secondary_Background}" Width="440" HorizontalAlignment="Left" CornerRadius="20"/>
+                            <Border Grid.Column="1" Margin="20,8,20,8" Background="{StaticResource SlateBrush}" Width="440" HorizontalAlignment="Left" CornerRadius="20"/>
                             <Button Grid.Column="1" Name="Close_Btn" Content="X" Margin="10" Width="30" Click="CloseButton_Click" HorizontalAlignment="Right">
 
                                 <Button.Style>
@@ -65,10 +72,6 @@
                             </Button>
                         </Grid>
                     </Border>
-
-
-
-
                     <ContentPresenter Grid.Row="1"/>
                 </Grid>
             </Border>
@@ -87,43 +90,39 @@
         <!-- ********************** End of Content ********************* -->
 
         <!-- ********************** Boutons ******************* -->
-        <Border Grid.Row="1" Background="LightGray" CornerRadius="0 50 0 30">
+        <Border Grid.Row="1" Style="{StaticResource CustomBorderStyle}">
             <DockPanel>
-                <!--Menu Logo-->
-                <!--Menu Titles-->
-                <TextBlock Text="André Suzuki" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
-                <TextBlock Text="Members, Annecy" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
-
-                <!--Menu Seprator-->
+                <TextBlock Text="André Suzuki" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                <TextBlock Text="Members, Annecy" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+                
                 <Separator Margin="25" Background="White" DockPanel.Dock="Top" Height="0.8"/>
 
-                <!--Menu Buttons-->
                 <StackPanel DockPanel.Dock="Top" >
                     <Button Name="Accueil_BTN" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Accueil"/>
+                            <TextBlock Text="Accueil" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                         </StackPanel>
                     </Button>
 
                     <Button Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Calendar"/>
+                            <TextBlock Text="Calendar" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                         </StackPanel>
                     </Button>
 
                     <Button Click="ContactsBTN_Click" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Contacts"/>
+                            <TextBlock Text="Contacts" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                         </StackPanel>
                     </Button>
 
                     <Button Click="Todolist_BTNClick" Style="{StaticResource menuButton}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Tâches"/>
+                            <TextBlock Text="Tâches" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -131,7 +130,7 @@
                 <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Logout"/>
+                        <TextBlock Text="Logout" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                     </StackPanel>
                 </Button>
 

@@ -149,5 +149,10 @@ namespace AgendaSQL_App.View
                 Genre_CB.SelectedItem = null;
             }
         }
+
+        private void Genre_CB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

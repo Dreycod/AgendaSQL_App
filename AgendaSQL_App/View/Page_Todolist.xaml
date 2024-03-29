@@ -89,7 +89,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="+ Todolist" Grid.Column="0" HorizontalAlignment="Center"  Style="{StaticResource addButton}" Click="AddTodolist_Click"/>
+                <Button Content="Add/Save" Grid.Column="0" HorizontalAlignment="Center"  Style="{StaticResource addButton}" Click="AddTodolist_Click"/>
 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -107,7 +107,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="List Genre" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold" Foreground="#121518"/>
                     
-                    <ComboBox Grid.Row="1" x:Name="Genre_CB">
+                    <ComboBox Grid.Row="1" x:Name="Genre_CB" SelectionChanged="Genre_CB_SelectionChanged">
                         <ComboBoxItem Content="Amis"/>
                         <ComboBoxItem Content="Famille"/>
                         <ComboBoxItem Content="Travail"/>
