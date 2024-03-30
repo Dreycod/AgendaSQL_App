@@ -75,7 +75,7 @@
 
              <!--************************************ Content Grid ************************************************--> 
             <Grid Grid.Row="3" >
-                <DataGrid Name="DG_Todolists" SelectionChanged="DG_Todolists_SelectionChanged" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}">
+                <!--<DataGrid Name="DG_Todolists" SelectionChanged="DG_Todolists_SelectionChanged" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Nom" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
@@ -95,7 +95,72 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-                </DataGrid>
+                </DataGrid>-->
+
+                <ListView Name="LV_Todolists" SelectionChanged="LV_Todolists_SelectionChanged" Background="Transparent">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="3" CornerRadius="10" Margin="5" Padding="5" VerticalAlignment="Top">
+                                
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#333138" Offset="0"/>
+                                        <GradientStop Color="#515052" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Border.BorderBrush>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#FF312E" Offset="0"/>
+                                        <GradientStop Color="#333138" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.BorderBrush>
+
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+                                        <TextBlock Text="Name: " FontWeight="Bold" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                        <TextBlock Text="{Binding Name}" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Genre: " FontWeight="Bold" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                        <TextBlock Text="{Binding Genre}" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="-5 0 0 0" Style="{StaticResource gridEditButton}" Click="OpenTaches_Click">
+                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                        <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Click="DeleteTodolist_Click">
+                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
+                                        </Button>
+                                    </StackPanel>
+
+                                    <ListView ItemsSource="{Binding Taches}" Background="Transparent">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox IsChecked="{Binding Fait}" Width="50"/>
+                                                    <TextBlock Text="{Binding Nom}" Margin="5" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                                    <TextBlock Text="{Binding Temps}" Margin="5" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+
+
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
             </Grid>
             
              <!--****************************** ADD TO DO LIST ***********************************-->

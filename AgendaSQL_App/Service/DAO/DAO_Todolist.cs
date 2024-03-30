@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AgendaSQL_App.Agenda_db;
+using Microsoft.EntityFrameworkCore;
 namespace AgendaSQL_App.Service.DAO
 {
     internal class DAO_Todolist
@@ -78,6 +79,30 @@ namespace AgendaSQL_App.Service.DAO
             using (var db = new AgendaSuzukidbContext())
             {
                 return db.Todolists.Where(t => t.Name.StartsWith(name)).ToList();
+            }
+        }
+
+        // get a jointure of todolist and taches
+        public IEnumerable<Todolist> GetTodolistWithTaches()
+        {
+            using (var db = new AgendaSuzukidbContext())
+            {
+                return db.Todolists.Include("Taches").ToList();
+            }
+        }
+
+        public IEnumerable<Todolist> GetTodolistWithTachesByGenre(string genre)
+        {
+            using (var db = new AgendaSuzukidbContext())
+            {
+                return db.Todolists.Include("Taches").Where(t => t.Genre == genre).ToList();
+            }
+        }
+        public IEnumerable<Todolist> GetTodolistWithTachesStartsByName(string name)
+        {
+            using (var db = new AgendaSuzukidbContext())
+            {
+                return db.Todolists.Include("Taches").Where(t => t.Name.StartsWith(name)).ToList();
             }
         }
     }

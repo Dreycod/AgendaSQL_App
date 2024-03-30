@@ -24,12 +24,15 @@ namespace AgendaSQL_App.View
     public partial class Page_Todolist : UserControl
     {
         DAO_Todolist dao_todolist;
+        DAO_Taches dao_taches;
+
         string current_Genre = "All";
 
         public Page_Todolist()
         {
             InitializeComponent();
             dao_todolist = new DAO_Todolist();
+            dao_taches = new DAO_Taches();
             LoadTodoLists();
 
         }
@@ -37,13 +40,13 @@ namespace AgendaSQL_App.View
         private void LoadTodoLists()
         {
             string filter = textBoxFilter.Text;
-            IEnumerable<Todolist> Liste = dao_todolist.GetAllTodolists();
+            IEnumerable<Todolist> Liste = dao_todolist.GetTodolistWithTaches();
 
             if (Liste != null)
             {
                 if (current_Genre != "All")
                 {
-                    Liste = dao_todolist.GetTodolistByGenre(current_Genre);
+                    Liste = dao_todolist.GetTodolistWithTachesByGenre(current_Genre);
 
                     if (filter != "")
                     {
@@ -52,19 +55,20 @@ namespace AgendaSQL_App.View
                 }
                 else if (filter != "")
                 {
-                    Liste = dao_todolist.GetTodolistStartsByName(filter);
+                    Liste = dao_todolist.GetTodolistWithTachesStartsByName(filter);
                 }
             }
 
-            DG_Todolists.ItemsSource = Liste;
+            LV_Todolists.ItemsSource = Liste;
 
-            int count = DG_Todolists.Items.Count;
+
+            int count = LV_Todolists.Items.Count;
             TotalTodolistsTB.Text = count.ToString() + " Total Todolists";
         }
 
         private void AddTodolist_Click(object sender, RoutedEventArgs e)
         {
-            Todolist _todolist = DG_Todolists.SelectedItem as Todolist;
+            Todolist _todolist = LV_Todolists.SelectedItem as Todolist;
             string name = ListName_TB.Text;
             if (Genre_CB.SelectedItem == null || name == "")
             {
@@ -117,7 +121,7 @@ namespace AgendaSQL_App.View
 
         private void DeleteTodolist_Click(object sender, RoutedEventArgs e)
         {
-            Todolist todolist = (Todolist)DG_Todolists.SelectedItem;
+            Todolist todolist = (Todolist)LV_Todolists.SelectedItem;
             dao_todolist.DeleteTodolist(todolist.Id);
             LoadTodoLists();
         }
@@ -129,7 +133,7 @@ namespace AgendaSQL_App.View
 
         private void OpenTaches_Click(object sender, RoutedEventArgs e)
         {
-            Todolist todolist = (Todolist)DG_Todolists.SelectedItem;
+            Todolist todolist = (Todolist)LV_Todolists.SelectedItem;
             bool IsOpen = false;
 
             foreach (Window window in Application.Current.Windows)
@@ -148,11 +152,11 @@ namespace AgendaSQL_App.View
             }
         }
 
-        private void DG_Todolists_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LV_Todolists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Todolist todolist = (Todolist)DG_Todolists.SelectedItem;
+            Todolist todolist = (Todolist)LV_Todolists.SelectedItem;
 
-            if (DG_Todolists.SelectedItem != null)
+            if (LV_Todolists.SelectedItem != null)
             {
                 ListName_TB.Text = todolist.Name;
                 Genre_CB.SelectedItem = todolist.Genre;

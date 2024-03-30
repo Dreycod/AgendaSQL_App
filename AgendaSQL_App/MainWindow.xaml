@@ -93,7 +93,7 @@
         <Border Grid.Row="1" Style="{StaticResource CustomBorderStyle}">
             <DockPanel>
                 <TextBlock Text="André Suzuki" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
-                <TextBlock Text="Members, Annecy" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+                <TextBlock Text="El Creator" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
                 
                 <Separator Margin="25" Background="White" DockPanel.Dock="Top" Height="0.8"/>
 
