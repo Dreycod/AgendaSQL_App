@@ -51,6 +51,7 @@ namespace AgendaSQL_App.Service.DAO
             using (var db = new AgendaSuzukidbContext())
             {
                 var contact = db.Contacts.SingleOrDefault(c => c.Id == id);
+
                 if (contact != null)
                 {
                     var reseauxProfiles = db.ReseauxProfiles.Where(rp => rp.ContactId == id).ToList();

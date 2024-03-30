@@ -38,18 +38,8 @@
             </Grid.RowDefinitions>
 
              <!--************************************ Top Grid ************************************************--> 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="To do Lists" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="To do Lists" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                <Button Content="Reset" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="ResetTodolists_Click"/>
-            </Grid>
-            
              <!--************************************ Button Grid ************************************************-->
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Horizontal">
@@ -58,6 +48,8 @@
                     <Button Content="Amis"  Margin="5,0,5,0" Grid.Column="2" Style="{StaticResource gridEditButton}" Click="Genre_Click"/>
                     <Button Content="Travail" Margin="5,0,5,0" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="Genre_Click"/>
                 </StackPanel>
+
+                <Button Content="Reset" HorizontalAlignment="Right" Margin="5,0,5,0" VerticalAlignment="Center" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="ResetTodolists_Click"/>
             </Grid>
             
             <!--************************************ Filter Grid ************************************************--> 
@@ -73,30 +65,8 @@
                 </Grid>
             </Grid>
 
-             <!--************************************ Content Grid ************************************************--> 
+             <!--************************************ Content Grid ************************************************-->
             <Grid Grid.Row="3" >
-                <!--<DataGrid Name="DG_Todolists" SelectionChanged="DG_Todolists_SelectionChanged" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="Nom" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Genre" Binding="{Binding Genre}" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Margin="-5 0 0 0"  Style="{StaticResource gridEditButton}" Click="OpenTaches_Click">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}" Click="DeleteTodolist_Click">
-                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>-->
-
                 <ListView Name="LV_Todolists" SelectionChanged="LV_Todolists_SelectionChanged" Background="Transparent">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>

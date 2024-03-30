@@ -24,7 +24,6 @@ namespace AgendaSQL_App.View
     public partial class Page_Todolist : UserControl
     {
         DAO_Todolist dao_todolist;
-        DAO_Taches dao_taches;
 
         string current_Genre = "All";
 
@@ -32,7 +31,6 @@ namespace AgendaSQL_App.View
         {
             InitializeComponent();
             dao_todolist = new DAO_Todolist();
-            dao_taches = new DAO_Taches();
             LoadTodoLists();
 
         }
@@ -122,18 +120,28 @@ namespace AgendaSQL_App.View
         private void DeleteTodolist_Click(object sender, RoutedEventArgs e)
         {
             Todolist todolist = (Todolist)LV_Todolists.SelectedItem;
+
+            // if todolist null tell the user to select a list 
+            if (todolist == null)
+            {
+                MessageBox.Show("Please select a todolist");
+                return;
+            }
             dao_todolist.DeleteTodolist(todolist.Id);
             LoadTodoLists();
         }
 
-        private void EditTodolist_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void OpenTaches_Click(object sender, RoutedEventArgs e)
         {
             Todolist todolist = (Todolist)LV_Todolists.SelectedItem;
+
+            if (todolist == null)
+            {
+                MessageBox.Show("Please select a todolist");
+                return;
+            }
+
             bool IsOpen = false;
 
             foreach (Window window in Application.Current.Windows)

@@ -39,28 +39,32 @@
             </Grid.RowDefinitions>
 
             <!-- ************************************ Top Grid ************************************************ -->
-            <Grid>
+
+
+            <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Contacts" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <!-- ************************************ Button Grid ************************************************ -->
+          
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Content="All" Margin="5,0,5,0" Grid.Column="0" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
+                <Button Content="Famille" Margin="5,0,5,0" Grid.Column="1" Style="{StaticResource gridEditButton}" Click="Relationship_Click" />
+                <Button Content="Amis"  Margin="5,0,5,0" Grid.Column="2" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
+                <Button Content="Travail" Margin="5,0,5,0" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Contacts" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                <Button Content="+ Member" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"  Style="{StaticResource gridEditButton}" Click="ToggleAddMember_Click"/>
-                <Button Content="Reset" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="ResetMembers_Click"/>
-            </Grid>
-            <!-- ************************************ Button Grid ************************************************ -->
-            <Grid Grid.Row="1">
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="All" Margin="5,0,5,0" Grid.Column="0" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
-                    <Button Content="Famille" Margin="5,0,5,0" Grid.Column="1" Style="{StaticResource gridEditButton}" Click="Relationship_Click" />
-                    <Button Content="Amis"  Margin="5,0,5,0" Grid.Column="2" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
-                    <Button Content="Travail" Margin="5,0,5,0" Grid.Column="3" Style="{StaticResource gridEditButton}" Click="Relationship_Click"/>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="+ Member" Margin="5,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource gridEditButton}" Click="ToggleAddMember_Click"/>
+                    <Button Content="Reset" Margin="5,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource gridEditButton}" Click="ResetMembers_Click"/>
                 </StackPanel>
             </Grid>
-
+    
             <!-- ************************************ Filter Grid ************************************************ -->
             <Grid Grid.Row="2" >
                 <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Name="TotalContactsTB" Text="N total contacts" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center"/>

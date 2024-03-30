@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using AgendaSQL_App.Agenda_db;
 using Microsoft.EntityFrameworkCore;
 namespace AgendaSQL_App.Service.DAO
@@ -49,9 +50,18 @@ namespace AgendaSQL_App.Service.DAO
             using (var db = new AgendaSuzukidbContext())
             {
                 var todolist = db.Todolists.SingleOrDefault(c => c.Id == id);
+
                 if (todolist != null)
                 {
+                    // delete the tasks related to the todolist 
+                    var taches = db.Taches.Where(t => t.TodolistId == id).ToList();
+
+                    foreach (var tache in taches)
+                    {
+                        db.Taches.Remove(tache);
+                    }
                     db.Todolists.Remove(todolist);
+
                     db.SaveChanges();
                 }
             }

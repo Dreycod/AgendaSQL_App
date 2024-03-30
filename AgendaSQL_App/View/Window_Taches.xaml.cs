@@ -26,12 +26,20 @@ namespace AgendaSQL_App.View
         DAO_Todolist dao_todolist;
         public Window_Taches(Todolist todolist)
         {
-            InitializeComponent();
-            preset_todolist = todolist;
-            dao_taches = new DAO_Taches();
-            dao_todolist = new DAO_Todolist();
+            if (todolist == null)
+            {
+                MessageBox.Show("Error: Todolist is null", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                InitializeComponent();
+                // check if the todolist is null
+                preset_todolist = todolist;
+                dao_taches = new DAO_Taches();
+                dao_todolist = new DAO_Todolist();
 
-            LoadTaches();
+                LoadTaches();
+            }
         }
 
         private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
