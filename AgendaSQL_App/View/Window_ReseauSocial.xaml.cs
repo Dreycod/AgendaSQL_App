@@ -33,6 +33,15 @@ namespace AgendaSQL_App.View
             LoadInfo();
         }
 
+        private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+
+        }
         private void LoadInfo()
         {
 

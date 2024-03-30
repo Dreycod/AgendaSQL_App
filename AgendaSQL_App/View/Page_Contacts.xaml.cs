@@ -67,8 +67,22 @@ namespace AgendaSQL_App.View
         }
         private void ToggleAddMember_Click(object sender, RoutedEventArgs e)
         {
-            Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, null);
-            window_ContactInfo.Show();
+            // check if a window is already open
+            bool IsOpen = false;
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(Window_ContactInfo))
+                {
+                    MessageBox.Show("Please close the current window before opening a new one");
+                    IsOpen = true;
+                }
+            }
+            if (!IsOpen)
+            {
+                Window_ContactInfo window_ContactInfo = new Window_ContactInfo(this, null);
+                window_ContactInfo.Show();
+            }
         }
 
         private void SaveMembers_Click(object sender, RoutedEventArgs e)

@@ -98,14 +98,14 @@
                 <Separator Margin="25" Background="White" DockPanel.Dock="Top" Height="0.8"/>
 
                 <StackPanel DockPanel.Dock="Top" >
-                    <Button Name="Accueil_BTN" Style="{StaticResource menuButton}">
+                    <Button Name="Accueil_BTN" Style="{StaticResource menuButton}" Click="Accueil_BTN_Click">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Accueil" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                         </StackPanel>
                     </Button>
 
-                    <Button Name="Calendar_BTN" Style="{StaticResource menuButton}">
+                    <Button Name="Calendar_BTN" Style="{StaticResource menuButton}" Click="Calendar_BTN_Click">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Calendar" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
@@ -126,14 +126,6 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-
-                <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Logout" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
-                    </StackPanel>
-                </Button>
-
             </DockPanel>
         </Border>
         <!-- ********************** End of Boutons ******************* -->

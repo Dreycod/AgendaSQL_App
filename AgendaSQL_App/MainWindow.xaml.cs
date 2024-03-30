@@ -58,5 +58,19 @@ namespace AgendaSQL_App
             Grid_Content.Children.Clear();
             Grid_Content.Children.Add(page_Todolist);
         }
+
+        private void Accueil_BTN_Click(object sender, RoutedEventArgs e)
+        {
+            Page_Dashboard page_Dashboard = new Page_Dashboard();
+            Grid_Content.Children.Clear();
+            Grid_Content.Children.Add(page_Dashboard);
+        }
+
+        private void Calendar_BTN_Click(object sender, RoutedEventArgs e)
+        {
+            Page_Agenda page_Agenda = new Page_Agenda();
+            Grid_Content.Children.Clear();
+            Grid_Content.Children.Add(page_Agenda);
+        }
     }
 }

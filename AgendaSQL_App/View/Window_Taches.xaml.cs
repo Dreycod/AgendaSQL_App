@@ -34,6 +34,15 @@ namespace AgendaSQL_App.View
             LoadTaches();
         }
 
+        private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+
+        }
         private void LoadTaches()
         {
             TodolistName_TB.Text = preset_todolist.Name;

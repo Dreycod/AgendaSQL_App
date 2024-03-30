@@ -39,6 +39,15 @@ namespace AgendaSQL_App.View
             }
         }
 
+        private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         private void EditMember()
         {
             NomTB.Text = presetContact.Name;
