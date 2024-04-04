@@ -5,6 +5,26 @@
              xmlns:local="clr-namespace:AgendaSQL_App"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
+    <DataTemplate x:Key="viewHeaderTemplate">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="{Binding DayText}" FontSize="14" Foreground="#C4C4C4"/>
+            <TextBlock Text="{Binding DateText}" Foreground="#152A34" FontWeight="Bold" FontSize="24"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <Style x:Key="ScheduleTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#152A34"/>
+    </Style>
+
+    <Style x:Key="ScheduleDate" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#152A34"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+    </Style>
+    
     <SolidColorBrush x:Key="Main_Background" Color="#A5A5A5"/>
     <SolidColorBrush x:Key="Secondary_Background" Color="#ECECEC"/>
     
