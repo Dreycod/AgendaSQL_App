@@ -31,7 +31,7 @@ namespace AgendaSQL_App.Service.DAO
             }
         }
 
-        public Contact GetContactById(int id)
+        public Contact GetContactById(int id) 
         {
             using (var db = new AgendaSuzukidbContext())
             {
