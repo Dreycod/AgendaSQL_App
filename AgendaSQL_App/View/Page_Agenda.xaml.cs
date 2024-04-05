@@ -1,5 +1,4 @@
-﻿using AgendaSQL_App.Model;
-using Google.Apis.Calendar.v3.Data;
+﻿using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Services;
 using System;
@@ -33,20 +32,25 @@ namespace AgendaSQL_App.View
             InitializeComponent();
 
             this.DataContext = this;
-            LoadEventsAsync();
+            DateTime Today = DateTime.Now;
+
+            LoadEventsAsync(Today);
         }
 
-        private async void LoadEventsAsync()
+        private async void LoadEventsAsync(DateTime date)
         {
             try
             {
                 var service = await DAO_GoogleCalendar.GetCalendarServiceAsync();
                 var request = service.Events.List("primary");
-                request.TimeMin = DateTime.Now;
+                // time min et max sur la journée sélectionnée
+                request.TimeMin = date.Date;
+                request.TimeMax = date.Date.AddDays(1);
                 request.ShowDeleted = false;
                 request.SingleEvents = true;
                 request.MaxResults = 10;
                 request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+               
 
                 var events = await request.ExecuteAsync();
 
@@ -56,13 +60,24 @@ namespace AgendaSQL_App.View
                     Events.Add(eventItem);
                 }
 
+
                 EventsListView.ItemsSource = Events;
             }
             catch (Exception ex)
             {
                 // Gérer l'erreur, par exemple en affichant un message
-                Console.WriteLine($"Erreur lors du chargement des événements: {ex.Message}");
+                MessageBox.Show($"Erreur lors du chargement des événements: {ex.Message}");
             }
+        }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Récupérer la date sélectionnée et load
+            var date = DateCalendar.SelectedDate.Value;
+            // clear the list
+            Events.Clear();
+            LoadEventsAsync(date);
+
         }
     }
 }

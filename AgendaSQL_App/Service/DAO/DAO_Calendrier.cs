@@ -48,7 +48,7 @@ namespace WpfAgendaDatabase.Service.DAO
             }
 
             EventsResource.ListRequest request = service.Events.List("primary");
-            request.TimeMin = DateTime.Now;
+            request.TimeMin = DateTime.Now.AddMonths(-1);
             request.ShowDeleted = false;
             request.SingleEvents = true;
             request.MaxResults = 10;
@@ -65,5 +65,6 @@ namespace WpfAgendaDatabase.Service.DAO
                 return new List<Google.Apis.Calendar.v3.Data.Event>();
             }
         }
+
     }
 }

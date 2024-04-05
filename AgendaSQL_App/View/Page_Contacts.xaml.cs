@@ -85,14 +85,6 @@ namespace AgendaSQL_App.View
             }
         }
 
-        private void SaveMembers_Click(object sender, RoutedEventArgs e)
-        {
-            IEnumerable<Contact> contacts = DG_Contacts.ItemsSource as IEnumerable<Contact>;
-            foreach (Contact contact in contacts)
-            {
-                dao_contact.UpdateContact(contact);
-            }
-        }
         private void ResetMembers_Click(object sender, RoutedEventArgs e)
         {
             dao_contact.ResetContacts();

@@ -11,21 +11,6 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              d:DesignHeight="539" d:DesignWidth="737">
-
-    
-    <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis" />
-        <DataTemplate x:Key="EventTemplate">
-            <Border Background="#FFFDE7" Padding="10" Margin="5" CornerRadius="5" BorderBrush="Gray" BorderThickness="1">
-                <StackPanel>
-                    <TextBlock Text="{Binding Summary}" FontWeight="Bold" FontSize="16"/>
-                    <TextBlock Text="{Binding Start.DateTime, StringFormat='dd/MM/yyyy HH:mm'}" FontStyle="Italic" Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding End.DateTime, StringFormat='dd/MM/yyyy HH:mm'}" FontStyle="Italic" Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,5,0,0"/>
-                </StackPanel>
-            </Border>
-        </DataTemplate>
-    </UserControl.Resources>
     <!-- test-->
     <Border BorderThickness="2" CornerRadius="30">
 
@@ -46,39 +31,74 @@
 
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="56*"/>
-                <RowDefinition Height="39*"/>
-                <RowDefinition Height="40*"/>
-                <RowDefinition Height="335*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- ************************************ Top Grid ************************************************ -->
-            <Grid>
+            <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Google Calendar" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <!-- ************************************ Content Grid ************************************************ -->
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Contacts" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
- </Grid>
+                <Calendar x:Name="DateCalendar" CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" Style="{DynamicResource CalendarStyle1}" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+
+                <ListView Grid.Column="1" Name="EventsListView" Background="Transparent" ItemsSource="{Binding Events}" >
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="3" CornerRadius="10" Margin="5" Padding="5" VerticalAlignment="Top">
+
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#333138" Offset="0"/>
+                                        <GradientStop Color="#515052" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Border.BorderBrush>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#FF312E" Offset="0"/>
+                                        <GradientStop Color="#333138" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.BorderBrush>
+
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+                                        <TextBlock Text="Summary: " FontWeight="Bold" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                        <TextBlock Text="{Binding Summary}" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+                                        <TextBlock Text="Description: " FontWeight="Bold" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                        <TextBlock Text="{Binding Description}" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Start Time: " FontWeight="Bold" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                        <TextBlock Text="{Binding Start.DateTime, StringFormat='dd/MM/yyyy HH:mm'}" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="End Time: " FontWeight="Bold" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                        <TextBlock Text="{Binding  End.DateTime, StringFormat='dd/MM/yyyy HH:mm'}" Margin="0 0 5 0" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Background="Transparent"/>
+                                    </StackPanel>
 
 
-            <!-- ************************************ Filter Grid ************************************************ -->
-            <Grid Grid.Row="2" >
-                <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Name="TotalContactsTB" Text="N total contacts" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBlock Style="{StaticResource MahAppsSimpleTextBlockStyle}" Text="Filtrer Par :" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </StackPanel>
 
+
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            
             </Grid>
-
-            <!-- ************************************ Content Grid ************************************************ -->
-            <ListView x:Name="EventsListView" ItemsSource="{Binding Events}" ItemTemplate="{StaticResource EventTemplate}" Margin="10">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
         </Grid>
     </Border>
 </UserControl>
