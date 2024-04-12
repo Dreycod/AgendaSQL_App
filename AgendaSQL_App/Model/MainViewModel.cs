@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static AgendaSQL_App.Model.JSON_Classes;
 
 namespace AgendaSQL_App.Model
 {

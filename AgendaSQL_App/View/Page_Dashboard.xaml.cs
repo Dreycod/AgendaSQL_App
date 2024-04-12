@@ -16,6 +16,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AgendaSQL_App.Service;
 using AgendaSQL_App.Model;
+using System.Threading; // JsonConvert
+using Newtonsoft.Json; // JsonConvert
+using System.Net.Http; // HttpClient
+
 
 
 namespace AgendaSQL_App.View
@@ -178,16 +182,6 @@ namespace AgendaSQL_App.View
         }
 
         // évenement pour déplacer la fenêtre
-        private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
-        // évenement pour fermer la fenêtre
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
 
         // évenement sauvegarder les villes
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
