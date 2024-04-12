@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
 
 namespace AgendaSQL_App
 {
@@ -28,14 +29,39 @@ namespace AgendaSQL_App
         {
             InitializeComponent();
             DAO_Contact = new DAO_Contact();
+
+        }
+        private void LoggedIn()
+        {
+            CheckDatabase();
+            Grid_Content.Visibility = Visibility.Visible;
+            Login_Screen.Visibility = Visibility.Hidden;
+            Function_Border.Visibility = Visibility.Visible;
+
+            Page_Dashboard page_Dashboard = new Page_Dashboard();
+            Grid_Content.Children.Clear();
+            Grid_Content.Children.Add(page_Dashboard);
+        }
+
+        public void CheckDatabase()
+        {
             if (DAO_Contact.DatabaseExists() == false)
             {
                 Contacts_BTN.IsEnabled = false;
                 Todolist_BTN.IsEnabled = false;
                 MessageBox.Show("Database not found, please check your connection string! Contacts & Todolist Buttons Disabled.");
-            }
 
+                Page_Settings page_Settings = new Page_Settings();
+                Grid_Content.Children.Clear();
+                Grid_Content.Children.Add(page_Settings);
+            }
+            else
+            {
+                Contacts_BTN.IsEnabled = true;
+                Todolist_BTN.IsEnabled = true;
+            }
         }
+
         private void TopBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
@@ -71,6 +97,57 @@ namespace AgendaSQL_App
             Page_Agenda page_Agenda = new Page_Agenda();
             Grid_Content.Children.Clear();
             Grid_Content.Children.Add(page_Agenda);
+        }
+
+        private void Settings_BTNClick(object sender, RoutedEventArgs e)
+        {
+            Page_Settings page_Settings = new Page_Settings();
+            Grid_Content.Children.Clear();
+            Grid_Content.Children.Add(page_Settings);
+        }
+
+        private void Log_BTNClick(object sender, RoutedEventArgs e)
+        {
+            // Get config login info 
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            string user = config.AppSettings.Settings["loginUser"].Value;
+            string password = config.AppSettings.Settings["loginPassword"].Value;
+
+            // Check if password and user are correct
+            if (Password_PB.Password == password && Username_TB.Text == user)
+            {
+                LoggedIn();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Credentials");
+            }
+
+        }
+
+
+        private void Register_BTNClick(object sender, RoutedEventArgs e)
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(Window_Register))
+                {
+                    // make the index window active
+                    window.Activate();
+                    return;
+                }
+            }
+
+            Window_Register window_Register = new Window_Register();
+            window_Register.Show();
+
+        }
+
+        private void LogOutBTNClick(object sender, RoutedEventArgs e)
+        {
+            Grid_Content.Visibility = Visibility.Hidden;
+            Login_Screen.Visibility = Visibility.Visible;
+            Function_Border.Visibility = Visibility.Hidden;
         }
     }
 }

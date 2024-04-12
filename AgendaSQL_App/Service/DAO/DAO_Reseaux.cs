@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AgendaSQL_App.Service.DAO
 {
-    class DAO_Reseaux
+    class DAO_Reseaux: DAO_Contact
     {
         public DAO_Reseaux()
         { 

@@ -148,7 +148,7 @@ namespace AgendaSQL_App.View
             {
                 if (window.GetType() == typeof(Window_Taches))
                 {
-                    MessageBox.Show("Please close the current window before opening a new one");
+                    window.Activate();
                     IsOpen = true;
                 }
             }

@@ -8,7 +8,7 @@ using AgendaSQL_App.Agenda_db;
 using Microsoft.EntityFrameworkCore;
 namespace AgendaSQL_App.Service.DAO
 {
-    internal class DAO_Todolist
+    internal class DAO_Todolist: DAO_Contact
     {
         // get all todolists
         public IEnumerable<Todolist> GetAllTodolists()

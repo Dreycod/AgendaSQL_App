@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
+using System.Configuration;
 namespace AgendaSQL_App.Agenda_db;
 
 public partial class AgendaSuzukidbContext : DbContext
@@ -26,8 +26,16 @@ public partial class AgendaSuzukidbContext : DbContext
     public virtual DbSet<Todolist> Todolists { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;database=agenda_suzukidb", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.2.0-mysql"));
+    {
+        // use config file to get connection string
+        string host = ConfigurationManager.AppSettings["host"];
+        string port = ConfigurationManager.AppSettings["port"];
+        string user = ConfigurationManager.AppSettings["user"];
+        string password = ConfigurationManager.AppSettings["password"];
+        string database = ConfigurationManager.AppSettings["database"];
+        string mysqlVer = ConfigurationManager.AppSettings["mysqlVer"];
+        optionsBuilder.UseMySql($"server={host};port={port};user={user};password={password};database={database}", Microsoft.EntityFrameworkCore.ServerVersion.Parse(mysqlVer));
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -62,8 +62,6 @@ namespace AgendaSQL_App.View
                 cbi.Tag = item.Id;
                 Reseaux_CB.Items.Add(cbi);
             }
-
-
         }
 
         private void SaveNewMember_Click(object sender, RoutedEventArgs e)

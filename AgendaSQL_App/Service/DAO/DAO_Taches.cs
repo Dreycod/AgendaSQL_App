@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace AgendaSQL_App.Service.DAO
 {
-    internal class DAO_Taches
+    internal class DAO_Taches: DAO_Contact
     {
-
-
-
-        // get Taches by todolist id
         public IEnumerable<Tach> GetTachesByTodolistId(int id)
         {
             using (var db = new AgendaSuzukidbContext())

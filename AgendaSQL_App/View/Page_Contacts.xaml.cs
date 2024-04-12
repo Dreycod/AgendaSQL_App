@@ -74,7 +74,7 @@ namespace AgendaSQL_App.View
             {
                 if (window.GetType() == typeof(Window_ContactInfo))
                 {
-                    MessageBox.Show("Please close the current window before opening a new one");
+                    window.Activate();
                     IsOpen = true;
                 }
             }
@@ -118,7 +118,7 @@ namespace AgendaSQL_App.View
             {
                 if (window.GetType() == typeof(Window_ContactInfo))
                 {
-                    MessageBox.Show("Please close the current window before opening a new one");
+                    window.Activate(); 
                     IsOpen = true;
                 }
             }
@@ -137,7 +137,7 @@ namespace AgendaSQL_App.View
             {
                 if (window.GetType() == typeof(Window_ReseauSocial))
                 {
-                    MessageBox.Show("Please close the current window before opening a new one");
+                    window.Activate(); 
                     IsOpen = true;
                 }
             }

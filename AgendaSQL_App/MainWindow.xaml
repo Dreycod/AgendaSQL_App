@@ -84,16 +84,40 @@
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid Name="Login_Screen" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!-- Username Textbox -->
+            <TextBlock Text="Username:" Grid.Row="0" Margin="0 5" VerticalAlignment="Center" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
+            <TextBox Style="{StaticResource filterTextBox}" x:Name="Username_TB" Grid.Row="0" Margin="10" VerticalAlignment="Center" Width="200"/>
+
+            <!-- Password Textbox -->
+            <TextBlock Text="Password:" Grid.Row="1" Margin="0 5" VerticalAlignment="Center" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
+            <PasswordBox x:Name="Password_PB" Grid.Row="1" Margin="10" VerticalAlignment="Center" Width="200"/>
+
+            <!-- Login Button -->
+            <Button Content="Login" Style="{StaticResource gridEditButton}" Grid.Row="2" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Click="Log_BTNClick"/>
+
+            <!-- Register Button -->
+            <Button Content="Register" Style="{StaticResource gridEditButton}" Grid.Row="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Click="Register_BTNClick"/>
+        </Grid>
+
+
         <!-- ********************** Content *************************** -->
-        <Grid Name="Grid_Content"  Grid.Column="1" Background="Transparent">
+        <Grid Name="Grid_Content"  Grid.Column="1" Background="Transparent" Visibility="Hidden">
         </Grid>
         <!-- ********************** End of Content ********************* -->
 
         <!-- ********************** Boutons ******************* -->
-        <Border Grid.Row="1" Style="{StaticResource CustomBorderStyle}">
+        <Border x:Name="Function_Border" Grid.Row="1" Style="{StaticResource CustomBorderStyle}" Visibility="Hidden">
             <DockPanel>
-                <TextBlock Text="André Suzuki" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
-                <TextBlock Text="El Creator" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+                <TextBlock Text="Username" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                <TextBlock Text="Welcome!" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
                 
                 <Separator Margin="25" Background="White" DockPanel.Dock="Top" Height="0.8"/>
 
@@ -125,7 +149,23 @@
                             <TextBlock Text="Tâches" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
                         </StackPanel>
                     </Button>
+                    <Button Name="Settings_BTN" Click="Settings_BTNClick" Style="{StaticResource menuButton}" VerticalAlignment="Bottom">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Cog" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Settings" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
+
+                
+
+                <Button Name="LogOff_BTN" Click="LogOutBTNClick" Style="{StaticResource menuButton}" VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock Text="Logout" Style="{StaticResource MahAppsSimpleTextBlockStyle}"/>
+                    </StackPanel>
+                </Button>
+                
             </DockPanel>
         </Border>
         <!-- ********************** End of Boutons ******************* -->
