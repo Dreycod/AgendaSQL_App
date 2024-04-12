@@ -10,7 +10,7 @@ namespace AgendaSQL_App.Service
     {
         List<string> LsVille;
         public ComboBox City_CB { get; set; }
-        string PathVille = @"Ressources/Favourite_Villes.txt";
+        string PathVille = @"Ressources/Fav_Villes.txt";
         // Constructeur
         public VilleManager()
         {

@@ -116,7 +116,7 @@
         <!-- ********************** Boutons ******************* -->
         <Border x:Name="Function_Border" Grid.Row="1" Style="{StaticResource CustomBorderStyle}" Visibility="Hidden">
             <DockPanel>
-                <TextBlock Text="Username" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
+                <TextBlock x:Name="Username" Text="Username" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" Margin="5 25 0 10" TextAlignment="Center"/>
                 <TextBlock Text="Welcome!" Style="{StaticResource MahAppsSimpleTextBlockStyle}" Foreground="White" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
                 
                 <Separator Margin="25" Background="White" DockPanel.Dock="Top" Height="0.8"/>

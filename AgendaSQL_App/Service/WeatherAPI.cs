@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static AgendaSQL_App.Model.JSON_Classes;
+using AgendaSQL_App.Model;
 using System.Windows.Controls;
 
 namespace AgendaSQL_App.Service

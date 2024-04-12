@@ -30,7 +30,7 @@ namespace AgendaSQL_App
         {
             InitializeComponent();
             DAO_Contact = new DAO_Contact();
-
+            LoggedIn();
         }
 
         public void CheckDatabase()
@@ -144,6 +144,10 @@ namespace AgendaSQL_App
             Grid_Content.Visibility = Visibility.Visible;
             Login_Screen.Visibility = Visibility.Hidden;
             Function_Border.Visibility = Visibility.Visible;
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            string user = config.AppSettings.Settings["loginUser"].Value;
+            Username.Text = user;
 
             Page_Dashboard page_Dashboard = new Page_Dashboard();
             Grid_Content.Children.Clear();

@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Ressources\Client_Info.txt" />
+    <None Remove="Ressources\Favourite_Villes.txt" />
+    <None Remove="Ressources\Fav_Villes.txt" />
     <None Remove="Ressources\Images\FeelsLike.png" />
     <None Remove="Ressources\Images\Humidity.png" />
     <None Remove="Ressources\Images\Pressure.png" />
@@ -18,6 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Ressources\Client_Info.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Ressources\Fav_Villes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Ressources\Images\FeelsLike.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
