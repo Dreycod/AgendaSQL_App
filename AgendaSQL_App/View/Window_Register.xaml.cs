@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Configuration;
+using AgendaSQL_App.Service;
 namespace AgendaSQL_App.View
 {
     /// <summary>
@@ -48,11 +49,20 @@ namespace AgendaSQL_App.View
                 return;
             }
 
+
+            string Pwd = PasswordTB.Password;
+
+            if (Pwd.Length < 8)
+            { 
+                Pwd = MD5Crypter.CrypterMot_de_passe(PasswordTB.Password).ToString();
+            }
+
+
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings.Remove("loginUser");
             config.AppSettings.Settings.Add("loginUser", UsernameTB.Text);
             config.AppSettings.Settings.Remove("loginPassword");
-            config.AppSettings.Settings.Add("loginPassword", PasswordTB.Password);
+            config.AppSettings.Settings.Add("loginPassword", Pwd);
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
 

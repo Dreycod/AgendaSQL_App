@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
+using AgendaSQL_App.Service;
 
 namespace AgendaSQL_App
 {
@@ -30,17 +31,6 @@ namespace AgendaSQL_App
             InitializeComponent();
             DAO_Contact = new DAO_Contact();
 
-        }
-        private void LoggedIn()
-        {
-            CheckDatabase();
-            Grid_Content.Visibility = Visibility.Visible;
-            Login_Screen.Visibility = Visibility.Hidden;
-            Function_Border.Visibility = Visibility.Visible;
-
-            Page_Dashboard page_Dashboard = new Page_Dashboard();
-            Grid_Content.Children.Clear();
-            Grid_Content.Children.Add(page_Dashboard);
         }
 
         public void CheckDatabase()
@@ -114,7 +104,13 @@ namespace AgendaSQL_App
             string password = config.AppSettings.Settings["loginPassword"].Value;
 
             // Check if password and user are correct
-            if (Password_PB.Password == password && Username_TB.Text == user)
+            string Pwd = Password_PB.Password;
+            if (Pwd.Length < 8)
+            {
+                Pwd = MD5Crypter.CrypterMot_de_passe(Password_PB.Password).ToString();
+            }
+
+            if (Pwd == password && Username_TB.Text == user)
             {
                 LoggedIn();
             }
@@ -122,7 +118,6 @@ namespace AgendaSQL_App
             {
                 MessageBox.Show("Invalid Credentials");
             }
-
         }
 
 
@@ -141,6 +136,18 @@ namespace AgendaSQL_App
             Window_Register window_Register = new Window_Register();
             window_Register.Show();
 
+        }
+
+        private void LoggedIn()
+        {
+            CheckDatabase();
+            Grid_Content.Visibility = Visibility.Visible;
+            Login_Screen.Visibility = Visibility.Hidden;
+            Function_Border.Visibility = Visibility.Visible;
+
+            Page_Dashboard page_Dashboard = new Page_Dashboard();
+            Grid_Content.Children.Clear();
+            Grid_Content.Children.Add(page_Dashboard);
         }
 
         private void LogOutBTNClick(object sender, RoutedEventArgs e)
